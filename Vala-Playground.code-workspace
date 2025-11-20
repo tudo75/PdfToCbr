@@ -4,5 +4,8 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"C_Cpp.default.compileCommands": "/home/nick/dev_projects/Vala-Playground/brotherprinterusb/build/compile_commands.json",
+		"C_Cpp.default.configurationProvider": "mesonbuild.mesonbuild"
+	}
 }
