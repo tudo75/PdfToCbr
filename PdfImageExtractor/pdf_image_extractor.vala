@@ -200,15 +200,20 @@ public class PdfImageExtractor : Object {
     private static void add_surface_to_archive(Archive.Write? writer, Cairo.Surface surface, string entry_name) {
         try {
             // Usa un flusso in memoria per ottenere i dati del PNG
-            var stream = new MemoryOutputStream(null);
+            MemoryOutputStream stream = new MemoryOutputStream(null);
             surface.write_to_png_stream((data) => {
-                stream.write(data);
-                return Cairo.Status.SUCCESS;
+                try {
+                    stream.write(data);
+                    return Cairo.Status.SUCCESS;
+                }  catch (GLib.IOError e) {
+                    stderr.printf("Errore durante l'aggiunta di '%s' all'archivio: %s\n", entry_name, e.message);
+                    return Cairo.Status.WRITE_ERROR;
+                }
             });
             stream.close();
 
             // Converte il flusso in un array di byte
-            var bytes = (stream as MemoryOutputStream).steal_data();
+            var bytes = stream.steal_data();
             
             // Aggiunge i dati all'archivio
             var entry = new Archive.Entry();
