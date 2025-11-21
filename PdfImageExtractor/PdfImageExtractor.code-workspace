@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"C_Cpp.default.configurationProvider": "mesonbuild.mesonbuild",
+		"C_Cpp.default.compileCommands": "/home/nick/dev_projects/Vala-Playground/PdfImageExtractor/build/compile_commands.json"
+	}
+}
