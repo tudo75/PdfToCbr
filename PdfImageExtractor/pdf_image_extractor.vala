@@ -43,8 +43,8 @@ public class PdfImageExtractor : Object {
         }
         string input_path = args[1];
 
-        string temp_dir = "";
         format = format.down();
+        
         if (format == "jpeg") format = "jpg";
 
         if (format != "png" && format != "jpg") {
@@ -59,8 +59,9 @@ public class PdfImageExtractor : Object {
 
         bool use_zip = output_path.has_suffix(".zip");
         bool use_rar = output_path.has_suffix(".rar");
-        string output_dir = output_path;
 
+        string temp_dir = "";
+        string output_dir = output_path;
         if (use_zip || use_rar) {
             // Creiamo una directory temporanea per i file immagine
             // Il modo moderno e sicuro per creare una directory temporanea
@@ -77,6 +78,13 @@ public class PdfImageExtractor : Object {
         } else if (!FileUtils.test(output_dir, FileTest.IS_DIR)) {
             DirUtils.create_with_parents(output_dir, 0755);
         }
+
+        new PdfImageExtractor( input_path, output_dir, format, use_zip, use_rar);
+
+        return 0;
+    }
+
+    public PdfImageExtractor (string input_path, string output_dir, string format, bool use_zip = false, bool use_rar = false) {
 
         try {
             File file = File.new_for_path(input_path);
@@ -137,9 +145,9 @@ public class PdfImageExtractor : Object {
                 if (archive_writer != null) archive_writer.close();
                 stdout.printf("Finito! %d immagini salvate in '%s'.\n", total_images, output_path);
             } else if (use_rar) {
-                create_rar_archive(output_path, temp_dir);
+                create_rar_archive(output_path, output_dir);
                 // Pulizia della cartella temporanea
-                remove_files_and_folders(temp_dir);
+                remove_files_and_folders(output_dir);
                 
                 stdout.printf("Finito! %d immagini salvate in '%s'.\n", total_images, output_path);
             } else {
@@ -148,10 +156,7 @@ public class PdfImageExtractor : Object {
 
         } catch (GLib.Error e) {
             stderr.printf("Errore: %s\n", e.message);
-            return 1;
         }
-
-        return 0;
     }
 
     /*

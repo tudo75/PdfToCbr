@@ -37,7 +37,6 @@ conf_data.set('PREFIX', get_option('prefix'))
 # Specify the source files
 src = files(
     'pdf_image_extractor.vala',
-    #'src/labels.vala',
 )
 
 # Define the executable
@@ -46,4 +45,11 @@ executable(
     src,
 #    config_header,
     dependencies: dependencies,
+)
+
+# Eseguibile con interfaccia GTK4
+executable(
+    'pdf-image-extractor-gtk',
+    'main_ui.vala',
+    dependencies: dependencies + [dependency('gtk4')],
 )
