@@ -61,24 +61,14 @@ public class PdfImageExtractorCli {
 
         extractor.finished.connect((total_images, out_path) => {
             stdout.printf("\nFinito! %d immagini salvate in '%s'.\n", total_images, out_path);
-            MainLoop.current().quit();
         });
 
         extractor.error.connect((msg) => {
             stderr.printf("\nErrore: %s\n", msg);
-            MainLoop.current().quit();
         });
 
         // Esegui l'estrazione
-        try {
-            extractor.extract_images(input_path, output_path, format);
-        } catch (Error e) {
-            // L'errore viene già gestito dal segnale 'error'
-        }
-
-        // Avvia un MainLoop per attendere i segnali asincroni (anche se qui sono sincroni)
-        var loop = new MainLoop();
-        loop.run();
+        extractor.extract_images(input_path, output_path, format);
 
         return 0;
     }

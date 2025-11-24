@@ -36,27 +36,20 @@ conf_data.set('PREFIX', get_option('prefix'))
 
 # Specify the source files
 src = files(
-    'pdf_image_extractor.vala',
+    'src/pdf_image_extractor.vala',
 )
 
 # Define the executable
 executable(
     'pdf-image-extractor', 
-    src,
+    src, 'src/main_cli.vala',
 #    config_header,
     dependencies: dependencies,
-)
-
-# Eseguibile con interfaccia GTK4
-executable(
-    'pdf-image-extractor-gtk',
-    'main_ui.vala',
-    dependencies: dependencies + [dependency('gtk4')],
 )
 
 # Eseguibile con nuova interfaccia GTK4
 executable(
     'pdf-image-extractor-gtk4',
-    'gui.vala', 
+    'src/gui.vala', src,
     dependencies: dependencies + [dependency('gtk4')],
 )

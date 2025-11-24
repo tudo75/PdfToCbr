@@ -20,6 +20,7 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
     private ProgressBar progress_bar;
     private Button extract_button;
     private Button output_browse_button;
+    private PdfImageExtractor extractor;
 
     public ExtractorWindow (Gtk.Application app) {
         Object (application: app, title: "Estrattore Immagini PDF");
@@ -90,22 +91,29 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         extract_button.add_css_class ("suggested-action");
         extract_button.clicked.connect (on_extract_clicked);
         content_box.append (extract_button);
+
+        // Istanzia l'estrattore e collega i segnali
+        extractor = new PdfImageExtractor();
+        extractor.progress.connect(on_extraction_progress);
+        extractor.finished.connect(on_extraction_finished);
+        extractor.error.connect(on_extraction_error);
     }
 
-    private void on_browse_input () {
-        var dialog = new FileChooserNative ("Seleziona PDF", this, FileChooserAction.OPEN, "_Apri", "_Annulla");
+    private async void on_browse_input () {
+        var dialog = new FileDialog();
+        dialog.title = "Seleziona PDF";
         var filter = new FileFilter ();
         filter.add_pattern ("*.pdf");
-        filter.set_filter_name ("Documenti PDF");
-        dialog.add_filter (filter);
+        filter.name = "Documenti PDF";
+        
+        var filters = new GLib.ListStore(typeof(FileFilter));
+        filters.append(filter);
+        dialog.filters = filters;
 
-        dialog.response.connect ((response) => {
-            if (response == ResponseType.ACCEPT) {
-                input_entry.text = dialog.get_file ().get_path ();
-            }
-            dialog.destroy ();
-        });
-        dialog.show ();
+        try {
+            var file = yield dialog.open(this, null);
+            input_entry.text = file.get_path();
+        } catch (Error e) {} // L'utente ha annullato
     }
 
     private void on_mode_changed () {
@@ -113,27 +121,32 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         output_entry.text = "";
     }
 
-    private void on_browse_output () {
+    private async void on_browse_output () {
         uint selected_mode = mode_dropdown.selected; // 0=Folder, 1=Zip, 2=Rar
         
         FileChooserAction action = (selected_mode == 0) ? FileChooserAction.SELECT_FOLDER : FileChooserAction.SAVE;
         string title = (selected_mode == 0) ? "Seleziona Cartella" : "Salva Archivio";
         
-        var dialog = new FileChooserNative (title, this, action, "_Seleziona", "_Annulla");
+        var dialog = new FileDialog();
+        dialog.title = title;
 
         if (selected_mode == 1) {
-            dialog.set_current_name ("immagini.zip");
+            dialog.initial_name = "immagini.zip";
         } else if (selected_mode == 2) {
-            dialog.set_current_name ("immagini.rar");
+            dialog.initial_name = "immagini.rar";
         }
 
-        dialog.response.connect ((response) => {
-            if (response == ResponseType.ACCEPT) {
-                output_entry.text = dialog.get_file ().get_path ();
+        try {
+            if (action == FileChooserAction.SAVE) {
+                var file = yield dialog.save(this, null);
+                output_entry.text = file.get_path();
+            } else { // SELECT_FOLDER
+                var folder = yield dialog.select_folder(this, null);
+                output_entry.text = folder.get_path();
             }
-            dialog.destroy ();
-        });
-        dialog.show ();
+        } catch (Error e) {
+            // L'utente ha annullato
+        }
     }
 
     private void on_extract_clicked () {
@@ -151,42 +164,47 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
 
         // UI Update: Disabilita controlli e avvia animazione
         set_inputs_sensitive (false);
-        progress_bar.pulse_step = 0.1;
         progress_bar.text = "Estrazione in corso...";
-        
-        // Avvia un timer per l'animazione "pulse" (poiché la classe originale non ci dà callback di progresso)
-        var pulse_source = Timeout.add (100, () => {
-            progress_bar.pulse ();
-            return true; 
-        });
+        progress_bar.fraction = 0.0;
 
         // Esegue l'operazione pesante in un thread separato
         new Thread<void> ("extractor_worker", () => {
             try {
-                // Istanzia la TUA classe originale
-                //new PdfImageExtractor (input_path, output_path, format, is_zip, is_rar);
-                
-                // Torna al thread principale per aggiornare la UI
-                Idle.add (() => {
-                    Source.remove (pulse_source);
-                    progress_bar.fraction = 1.0;
-                    progress_bar.text = "Completato!";
-                    show_alert ("Successo", "Estrazione completata con successo!");
-                    set_inputs_sensitive (true);
-                    return false;
-                });
+                // Chiama il metodo corretto sulla classe già istanziata
+                extractor.extract_images(input_path, output_path, format);
             } catch (Error e) {
-                /*
-                Idle.add (() => {
-                    Source.remove (pulse_source);
-                    progress_bar.fraction = 0.0;
-                    progress_bar.text = "Errore";
-                    show_alert ("Errore", e.message);
-                    set_inputs_sensitive (true);
-                    return false;
-                });
-                */
+                // Gli errori vengono gestiti dal segnale 'error'
             }
+        });
+    }
+
+    private void on_extraction_progress(int current_page, int total_pages, string message) {
+        Idle.add(() => {
+            progress_bar.text = message;
+            if (total_pages > 0) {
+                progress_bar.fraction = (double)current_page / total_pages;
+            }
+            return Source.REMOVE;
+        });
+    }
+
+    private void on_extraction_finished(int total_images, string output_path) {
+        Idle.add(() => {
+            set_inputs_sensitive(true);
+            progress_bar.fraction = 1.0;
+            progress_bar.text = "Completato!";
+            show_alert("Successo", "Estrazione di %d immagini completata!".printf(total_images));
+            return Source.REMOVE;
+        });
+    }
+
+    private void on_extraction_error(string message) {
+        Idle.add(() => {
+            set_inputs_sensitive(true);
+            progress_bar.fraction = 0;
+            progress_bar.text = "Errore";
+            show_alert("Errore", message);
+            return Source.REMOVE;
         });
     }
 
@@ -198,11 +216,12 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         mode_dropdown.sensitive = sensitive;
     }
 
-    private void show_alert (string title, string message) {
-        var dialog = new MessageDialog (this, DialogFlags.MODAL, MessageType.INFO, ButtonsType.OK, "%s", message);
-        dialog.title = title;
-        dialog.response.connect (() => { dialog.destroy (); });
-        dialog.show ();
+    private async void show_alert (string title, string message) {
+        var dialog = new AlertDialog(title, message);
+        dialog.set_buttons({"OK"});
+        try {
+            yield dialog.choose(this, null);
+        } catch (Error e) {} // L'utente ha chiuso il dialogo
     }
 }
 
