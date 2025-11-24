@@ -149,18 +149,18 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         }
     }
 
-    private void on_extract_clicked () {
+    private async void on_extract_clicked () {
         string input_path = input_entry.text;
         string output_path = output_entry.text;
         
         if (input_path == "" || output_path == "") {
-            show_alert ("Errore", "Seleziona sia il file di input che la destinazione.");
+            yield show_alert ("Errore", "Seleziona sia il file di input che la destinazione.");
             return;
         }
 
         string format = (format_dropdown.selected == 0) ? "png" : "jpg";
-        bool is_zip = (mode_dropdown.selected == 1);
-        bool is_rar = (mode_dropdown.selected == 2);
+        //bool is_zip = (mode_dropdown.selected == 1);
+        //bool is_rar = (mode_dropdown.selected == 2);
 
         // UI Update: Disabilita controlli e avvia animazione
         set_inputs_sensitive (false);
@@ -169,12 +169,8 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
 
         // Esegue l'operazione pesante in un thread separato
         new Thread<void> ("extractor_worker", () => {
-            try {
-                // Chiama il metodo corretto sulla classe già istanziata
-                extractor.extract_images(input_path, output_path, format);
-            } catch (Error e) {
-                // Gli errori vengono gestiti dal segnale 'error'
-            }
+            // Chiama il metodo corretto sulla classe già istanziata
+            extractor.extract_images(input_path, output_path, format);
         });
     }
 
@@ -188,24 +184,20 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         });
     }
 
-    private void on_extraction_finished(int total_images, string output_path) {
-        Idle.add(() => {
-            set_inputs_sensitive(true);
-            progress_bar.fraction = 1.0;
-            progress_bar.text = "Completato!";
-            show_alert("Successo", "Estrazione di %d immagini completata!".printf(total_images));
-            return Source.REMOVE;
-        });
+    private async void on_extraction_finished(int total_images, string output_path) {
+        set_inputs_sensitive(true);
+        progress_bar.fraction = 1.0;
+        progress_bar.text = "Completato!";
+        yield show_alert ("Successo", "Estrazione di %d immagini completata!".printf(total_images));
+        return;
     }
 
-    private void on_extraction_error(string message) {
-        Idle.add(() => {
-            set_inputs_sensitive(true);
-            progress_bar.fraction = 0;
-            progress_bar.text = "Errore";
-            show_alert("Errore", message);
-            return Source.REMOVE;
-        });
+    private async void on_extraction_error(string message) {
+        set_inputs_sensitive(true);
+        progress_bar.fraction = 0;
+        progress_bar.text = "Errore";
+        yield show_alert("Errore", message);
+        return;
     }
 
     private void set_inputs_sensitive (bool sensitive) {
