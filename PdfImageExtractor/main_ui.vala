@@ -6,12 +6,14 @@ using GLib;
  */
 public class PdfExtractorWindow : Gtk.ApplicationWindow {
 
-    private Gtk.FileChooserDialog input_file_chooser;
-    private Gtk.FileChooserDialog output_path_chooser;
+    private GLib.File? selected_input_file;
+    private GLib.File? selected_output_file;
     private Gtk.DropDown format_chooser;
     private Gtk.Button start_button;
     private Gtk.ProgressBar progress_bar;
     private Gtk.Label status_label;
+    private Gtk.Label input_file_label;
+    private Gtk.Label output_path_label;
     private Gtk.Spinner spinner;
 
     // TODO
@@ -39,12 +41,11 @@ public class PdfExtractorWindow : Gtk.ApplicationWindow {
         var pdf_filter = new Gtk.FileFilter();
         pdf_filter.name = "File PDF";
         pdf_filter.add_mime_type("application/pdf");
-
-        input_file_chooser = new Gtk.FileChooserDialog("Seleziona un file PDF...", this, Gtk.FileChooserAction.OPEN);
+ 
+        input_file_chooser = new Gtk.FileChooserWidget(Gtk.FileChooserAction.OPEN);
         input_file_chooser.add_filter(pdf_filter);
 
-        // Output Path
-        output_path_chooser = new Gtk.FileChooserDialog("Seleziona cartella o file archivio...", this, Gtk.FileChooserAction.SAVE);
+        output_path_chooser = new Gtk.FileChooserWidget(Gtk.FileChooserAction.SAVE);
         var zip_filter = new Gtk.FileFilter();
         zip_filter.name = "Archivio ZIP";
         zip_filter.add_pattern("*.zip");
@@ -106,7 +107,7 @@ public class PdfExtractorWindow : Gtk.ApplicationWindow {
         string format = format_chooser.selected == 0 ? "png" : "jpg";
 
         // Aggiungi estensione se l'utente non l'ha fatto
-        if (output_path != null && !output_path.contains(".") && (output_path_chooser.get_filter().name ?? "").contains("Archivio")) {
+        if (output_path != null && !output_path.contains(".") && (output_path_chooser.get_filter() != null && (output_path_chooser.get_filter().name ?? "").contains("Archivio"))) {
              if ((output_path_chooser.get_filter().name ?? "").contains("ZIP")) {
                  output_path += ".zip";
              } else if (output_path_chooser.get_filter().name.contains("RAR")) {

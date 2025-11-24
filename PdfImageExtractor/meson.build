@@ -53,3 +53,10 @@ executable(
     'main_ui.vala',
     dependencies: dependencies + [dependency('gtk4')],
 )
+
+# Eseguibile con nuova interfaccia GTK4
+executable(
+    'pdf-image-extractor-gtk4',
+    'gui.vala', 
+    dependencies: dependencies + [dependency('gtk4')],
+)
