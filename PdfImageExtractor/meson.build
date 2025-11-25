@@ -1,11 +1,11 @@
-project('pdf-image-extractor', ['vala', 'c'], license: 'GPL-3.0-only', version: '0.0.1')
+project('PdfToCbr', ['vala', 'c'], license: 'GPL-3.0-only', license_files: 'LICENSE', version: '0.0.1')
 
 # Include the translations module
-# i18n = import('i18n')
+i18n = import('i18n')
 # define GETTEXT_PACKAGE
-# add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format (meson.project_name()), language:'c')
+add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format (meson.project_name()), language:'c')
 # Set our translation domain
-# add_global_arguments(['-DG_LOG_DOMAIN="@0@"'.format (meson.project_name())], language:'c')
+add_global_arguments(['-DG_LOG_DOMAIN="@0@"'.format (meson.project_name())], language:'c')
 
 add_global_arguments(['-DGDK_DISABLE_DEPRECATED', '-DGTK_DISABLE_DEPRECATED'], language:'c')
 
@@ -28,11 +28,11 @@ conf_data.set('GETTEXT_PACKAGE', meson.project_name())
 conf_data.set('VERSION', meson.project_version())
 conf_data.set('PREFIX', get_option('prefix'))
 
-# config_header = configure_file(
-#     input: 'src/config.vala.in',
-#     output: 'config.vala',
-#     configuration: conf_data
-# )
+config_header = configure_file(
+     input: 'src/config.vala.in',
+     output: 'config.vala',
+     configuration: conf_data
+)
 
 # Specify the source files
 src = files(
@@ -41,7 +41,7 @@ src = files(
 
 # Define the executable
 executable(
-    'pdf-image-extractor', 
+    'PdfToCbr-cli', 
     src, 'src/main_cli.vala',
 #    config_header,
     dependencies: dependencies,
@@ -49,7 +49,11 @@ executable(
 
 # Eseguibile con nuova interfaccia GTK4
 executable(
-    'pdf-image-extractor-gtk4',
-    'src/gui.vala', src,
+    'PdfToCbr',
+    'src/gui.vala',
+    src,
+    config_header,
     dependencies: dependencies + [dependency('gtk4')],
 )
+
+subdir('po')

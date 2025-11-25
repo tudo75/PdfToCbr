@@ -1,0 +1,120 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PdfToCbr\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-24 21:50+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/gui.vala:39
+msgid "PdfToCbr"
+msgstr ""
+
+#. Titolo
+#: src/gui.vala:50
+msgid "Estrattore PDF"
+msgstr ""
+
+#. 1. Input PDF
+#: src/gui.vala:62
+msgid "File PDF:"
+msgstr ""
+
+#: src/gui.vala:64
+msgid "Seleziona un PDF..."
+msgstr ""
+
+#. 2. Modalità Output (Cartella, ZIP, RAR)
+#: src/gui.vala:74
+msgid "Tipo Output:"
+msgstr ""
+
+#: src/gui.vala:75
+msgid "Cartella"
+msgstr ""
+
+#: src/gui.vala:75
+msgid "Archivio ZIP (.zip)"
+msgstr ""
+
+#: src/gui.vala:75
+msgid "Archivio RAR (.rar)"
+msgstr ""
+
+#. 3. Output Path
+#: src/gui.vala:81
+msgid "Destinazione:"
+msgstr ""
+
+#: src/gui.vala:83
+msgid "Seleziona destinazione..."
+msgstr ""
+
+#. 4. Formato Immagine
+#: src/gui.vala:91
+msgid "Formato:"
+msgstr ""
+
+#: src/gui.vala:99
+msgid "Pronto"
+msgstr ""
+
+#. Bottone Estrai
+#: src/gui.vala:103
+msgid "Estrai Immagini"
+msgstr ""
+
+#: src/gui.vala:117
+msgid "Seleziona PDF"
+msgstr ""
+
+#: src/gui.vala:120
+msgid "Documenti PDF"
+msgstr ""
+
+#: src/gui.vala:141
+msgid "Seleziona Cartella"
+msgstr ""
+
+#: src/gui.vala:141
+msgid "Salva Archivio"
+msgstr ""
+
+#: src/gui.vala:147
+msgid "immagini.zip"
+msgstr ""
+
+#: src/gui.vala:149
+msgid "immagini.rar"
+msgstr ""
+
+#: src/gui.vala:170 src/gui.vala:209 src/gui.vala:210
+msgid "Errore"
+msgstr ""
+
+#: src/gui.vala:170
+msgid "Seleziona sia il file di input che la destinazione."
+msgstr ""
+
+#. UI Update: Disabilita controlli e avvia animazione
+#: src/gui.vala:178
+msgid "Estrazione in corso..."
+msgstr ""
+
+#: src/gui.vala:201
+msgid "Completato!"
+msgstr ""
+
+#: src/gui.vala:202
+msgid "Successo"
+msgstr ""
+
+#: src/gui.vala:202
+#, c-format
+msgid "Estrazione di %d immagini completata!"
+msgstr ""

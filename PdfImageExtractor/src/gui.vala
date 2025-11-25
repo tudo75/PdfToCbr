@@ -2,8 +2,21 @@ using Gtk;
 using GLib;
 
 public class PdfExtractorApp : Gtk.Application {
+    private const string APP_NAME = Constants.PROJECT_NAME;
+    private const string VERSION = Constants.VERSION;
+    private const string APP_ID = Constants.APP_ID;
+    private const string APP_LANG_DOMAIN = Constants.GETTEXT_PACKAGE;
+    private const string APP_INSTALL_PREFIX = Constants.PREFIX;
+
     public PdfExtractorApp () {
-        Object (application_id: "com.example.pdfextractor", flags: ApplicationFlags.FLAGS_NONE);
+        Object (application_id: APP_ID, flags: ApplicationFlags.FLAGS_NONE);
+
+        // congfigure i18n localization
+        Intl.setlocale (LocaleCategory.ALL, "");
+        string langpack_dir = Path.build_filename (APP_INSTALL_PREFIX, "share", "locale");
+        Intl.bindtextdomain (APP_ID, langpack_dir);
+        Intl.bind_textdomain_codeset (APP_ID, "UTF-8");
+        Intl.textdomain (APP_ID);
     }
 
     protected override void activate () {
@@ -23,7 +36,7 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
     private PdfImageExtractor extractor;
 
     public ExtractorWindow (Gtk.Application app) {
-        Object (application: app, title: "Estrattore Immagini PDF");
+        Object (application: app, title: _("PdfToCbr"));
         this.set_default_size (500, 350);
 
         var content_box = new Box (Orientation.VERTICAL, 15);
@@ -34,7 +47,7 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         this.set_child (content_box);
 
         // Titolo
-        var title_label = new Label ("<span size='x-large' weight='bold'>Estrattore PDF</span>");
+        var title_label = new Label ("<span size='x-large' weight='bold'>%s</span>".printf (_("Estrattore PDF")));
         title_label.use_markup = true;
         content_box.append (title_label);
 
@@ -46,9 +59,9 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         content_box.append (grid);
 
         // 1. Input PDF
-        grid.attach (new Label ("File PDF:"), 0, 0, 1, 1);
+        grid.attach (new Label (_("File PDF:")), 0, 0, 1, 1);
         input_entry = new Entry ();
-        input_entry.placeholder_text = "Seleziona un PDF...";
+        input_entry.placeholder_text = _("Seleziona un PDF...");
         input_entry.hexpand = true;
         input_entry.width_chars = 30;
         grid.attach (input_entry, 1, 0, 1, 1);
@@ -58,16 +71,16 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         grid.attach (input_btn, 2, 0, 1, 1);
 
         // 2. Modalità Output (Cartella, ZIP, RAR)
-        grid.attach (new Label ("Tipo Output:"), 0, 1, 1, 1);
-        string[] modes = { "Cartella", "Archivio ZIP (.zip)", "Archivio RAR (.rar)" };
+        grid.attach (new Label (_("Tipo Output:")), 0, 1, 1, 1);
+        string[] modes = { _("Cartella"), _("Archivio ZIP (.zip)"), _("Archivio RAR (.rar)") };
         mode_dropdown = new DropDown.from_strings (modes);
         mode_dropdown.notify["selected"].connect (on_mode_changed);
         grid.attach (mode_dropdown, 1, 1, 2, 1);
 
         // 3. Output Path
-        grid.attach (new Label ("Destinazione:"), 0, 2, 1, 1);
+        grid.attach (new Label (_("Destinazione:")), 0, 2, 1, 1);
         output_entry = new Entry ();
-        output_entry.placeholder_text = "Seleziona destinazione...";
+        output_entry.placeholder_text = _("Seleziona destinazione...");
         grid.attach (output_entry, 1, 2, 1, 1);
 
         output_browse_button = new Button.from_icon_name ("document-open-symbolic");
@@ -75,7 +88,7 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         grid.attach (output_browse_button, 2, 2, 1, 1);
 
         // 4. Formato Immagine
-        grid.attach (new Label ("Formato:"), 0, 3, 1, 1);
+        grid.attach (new Label (_("Formato:")), 0, 3, 1, 1);
         string[] formats = { "PNG", "JPG" };
         format_dropdown = new DropDown.from_strings (formats);
         grid.attach (format_dropdown, 1, 3, 2, 1);
@@ -83,11 +96,11 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         // Progress Bar
         progress_bar = new ProgressBar ();
         progress_bar.show_text = true;
-        progress_bar.text = "Pronto";
+        progress_bar.text = _("Pronto");
         content_box.append (progress_bar);
 
         // Bottone Estrai
-        extract_button = new Button.with_label ("Estrai Immagini");
+        extract_button = new Button.with_label (_("Estrai Immagini"));
         extract_button.add_css_class ("suggested-action");
         extract_button.clicked.connect (on_extract_clicked);
         content_box.append (extract_button);
@@ -101,10 +114,10 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
 
     private async void on_browse_input () {
         var dialog = new FileDialog();
-        dialog.title = "Seleziona PDF";
+        dialog.title = _("Seleziona PDF");
         var filter = new FileFilter ();
         filter.add_pattern ("*.pdf");
-        filter.name = "Documenti PDF";
+        filter.name = _("Documenti PDF");
         
         var filters = new GLib.ListStore(typeof(FileFilter));
         filters.append(filter);
@@ -125,15 +138,15 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         uint selected_mode = mode_dropdown.selected; // 0=Folder, 1=Zip, 2=Rar
         
         FileChooserAction action = (selected_mode == 0) ? FileChooserAction.SELECT_FOLDER : FileChooserAction.SAVE;
-        string title = (selected_mode == 0) ? "Seleziona Cartella" : "Salva Archivio";
+        string title = (selected_mode == 0) ? _("Seleziona Cartella") : _("Salva Archivio");
         
         var dialog = new FileDialog();
         dialog.title = title;
 
         if (selected_mode == 1) {
-            dialog.initial_name = "immagini.zip";
+            dialog.initial_name = _("immagini.zip");
         } else if (selected_mode == 2) {
-            dialog.initial_name = "immagini.rar";
+            dialog.initial_name = _("immagini.rar");
         }
 
         try {
@@ -154,17 +167,15 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         string output_path = output_entry.text;
         
         if (input_path == "" || output_path == "") {
-            yield show_alert ("Errore", "Seleziona sia il file di input che la destinazione.");
+            yield show_alert (_("Errore"), _("Seleziona sia il file di input che la destinazione."));
             return;
         }
 
         string format = (format_dropdown.selected == 0) ? "png" : "jpg";
-        //bool is_zip = (mode_dropdown.selected == 1);
-        //bool is_rar = (mode_dropdown.selected == 2);
 
         // UI Update: Disabilita controlli e avvia animazione
         set_inputs_sensitive (false);
-        progress_bar.text = "Estrazione in corso...";
+        progress_bar.text = _("Estrazione in corso...");
         progress_bar.fraction = 0.0;
 
         // Esegue l'operazione pesante in un thread separato
@@ -187,16 +198,16 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
     private async void on_extraction_finished(int total_images, string output_path) {
         set_inputs_sensitive(true);
         progress_bar.fraction = 1.0;
-        progress_bar.text = "Completato!";
-        yield show_alert ("Successo", "Estrazione di %d immagini completata!".printf(total_images));
+        progress_bar.text = _("Completato!");
+        yield show_alert (_("Successo"), _("Estrazione di %d immagini completata!").printf(total_images));
         return;
     }
 
     private async void on_extraction_error(string message) {
         set_inputs_sensitive(true);
         progress_bar.fraction = 0;
-        progress_bar.text = "Errore";
-        yield show_alert("Errore", message);
+        progress_bar.text = _("Errore");
+        yield show_alert(_("Errore"), message);
         return;
     }
 
@@ -213,7 +224,7 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         dialog.set_buttons({"OK"});
         try {
             yield dialog.choose(this, null);
-        } catch (Error e) {} // L'utente ha chiuso il dialogo
+        } catch (Error e) {} // L'utente ha chiuso la finestra di dialogo
     }
 }
 
