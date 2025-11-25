@@ -34,10 +34,12 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
     private Button extract_button;
     private Button output_browse_button;
     private PdfImageExtractor extractor;
+    private TextView log_view;
+    private TextBuffer log_buffer;
 
     public ExtractorWindow (Gtk.Application app) {
         Object (application: app, title: _("PdfToCbr"));
-        this.set_default_size (500, 350);
+        this.set_default_size (500, 450);
 
         var content_box = new Box (Orientation.VERTICAL, 15);
         content_box.margin_top = 20;
@@ -105,6 +107,18 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         extract_button.clicked.connect (on_extract_clicked);
         content_box.append (extract_button);
 
+        // Area per i messaggi di log
+        var scrolled_window = new ScrolledWindow ();
+        scrolled_window.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
+        scrolled_window.set_size_request (-1, 100);
+        scrolled_window.vexpand = true;
+        log_view = new TextView ();
+        log_view.editable = false;
+        log_view.cursor_visible = false;
+        log_buffer = log_view.buffer;
+        scrolled_window.set_child (log_view);
+        content_box.append (scrolled_window);
+
         // Istanzia l'estrattore e collega i segnali
         extractor = new PdfImageExtractor();
         extractor.progress.connect(on_extraction_progress);
@@ -167,8 +181,8 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         string output_path = output_entry.text;
         
         if (input_path == "" || output_path == "") {
-            yield show_alert (_("Errore"), _("Seleziona sia il file di input che la destinazione."));
-            return;
+            log_message(_("Errore: Seleziona sia il file di input che la destinazione."));
+            return; // No need for yield anymore
         }
 
         string format = (format_dropdown.selected == 0) ? "png" : "jpg";
@@ -177,6 +191,7 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         set_inputs_sensitive (false);
         progress_bar.text = _("Estrazione in corso...");
         progress_bar.fraction = 0.0;
+        log_message(_("Avvio estrazione..."));
 
         // Esegue l'operazione pesante in un thread separato
         new Thread<void> ("extractor_worker", () => {
@@ -195,20 +210,20 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         });
     }
 
-    private async void on_extraction_finished(int total_images, string output_path) {
+    private void on_extraction_finished(int total_images, string output_path) {
         set_inputs_sensitive(true);
         progress_bar.fraction = 1.0;
         progress_bar.text = _("Completato!");
-        yield show_alert (_("Successo"), _("Estrazione di %d immagini completata!").printf(total_images));
-        return;
+        log_message(_("Successo: Estrazione di %d immagini completata!").printf(total_images));
     }
 
-    private async void on_extraction_error(string message) {
+    private void on_extraction_error(string message) {
         set_inputs_sensitive(true);
         progress_bar.fraction = 0;
         progress_bar.text = _("Errore");
-        yield show_alert(_("Errore"), message);
-        return;
+        string error_msg = _("Errore: %s").printf(message);
+        log_message(error_msg);
+        warning(error_msg); // Log to console as well for debugging
     }
 
     private void set_inputs_sensitive (bool sensitive) {
@@ -219,12 +234,14 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         mode_dropdown.sensitive = sensitive;
     }
 
-    private async void show_alert (string title, string message) {
-        var dialog = new AlertDialog(title, message);
-        dialog.set_buttons({"OK"});
-        try {
-            yield dialog.choose(this, null);
-        } catch (Error e) {} // L'utente ha chiuso la finestra di dialogo
+    private void log_message(string message) {
+        Idle.add(() => {
+            Gtk.TextIter iter;
+            log_buffer.get_end_iter(out iter);
+            log_buffer.insert(ref iter, message + "\n", (message + "\n").length);
+            log_view.scroll_to_iter(iter, 0.0, true, 0.0, 1.0);
+            return Source.REMOVE;
+        });
     }
 }
 
