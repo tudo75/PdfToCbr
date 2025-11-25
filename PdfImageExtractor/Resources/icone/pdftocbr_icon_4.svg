@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- pdftocbr-icon.svg - versione minimal + sfondo arrotondato + elementi curvi ripetuti -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="pdftocbr curved elements dark icon">
+  <defs>
+    <style>
+      .shadow { filter: drop-shadow(0 4px 8px rgba(0,0,0,0.45)); }
+    </style>
+  </defs>
+
+  <!-- sfondo arrotondato -->
+  <rect x="32" y="32" width="448" height="448" rx="40" fill="#111" stroke="#333" stroke-width="3"/>
+
+  <!-- PDF block minimal -->
+  <g transform="translate(70,70)" class="shadow">
+    <rect x="0" y="0" width="200" height="260" rx="12" fill="#1f1f1f" stroke="#555" stroke-width="2"/>
+    <rect x="0" y="0" width="200" height="44" rx="8" fill="#c0392b"/>
+
+    <!-- immagine minimal -->
+    <rect x="20" y="64" width="160" height="160" rx="8" fill="#292929" stroke="#444" stroke-width="2"/>
+    <path d="M40 200 L90 120 L140 200 Z" fill="#666"/>
+    <circle cx="150" cy="100" r="10" fill="#bbb"/>
+  </g>
+
+  <!-- nuova freccia curva ripetuta -->
+  <g transform="translate(285,150)" class="shadow">
+    <!-- tre curve concentriche che suggeriscono movimento/trasferimento -->
+    <path d="M20 60 C60 20, 120 20, 160 60" fill="none" stroke="#e0e0e0" stroke-width="12" stroke-linecap="round"/>
+    <path d="M20 100 C60 60, 120 60, 160 100" fill="none" stroke="#d0d0d0" stroke-width="12" stroke-linecap="round"/>
+    <path d="M20 140 C60 100, 120 100, 160 140" fill="none" stroke="#c0c0c0" stroke-width="12" stroke-linecap="round"/>
+  </g>
+
+  <!-- icona CBR con forme curve ripetute (simbolo tipo "ondulazione" per indicare raccolta/impacchettamento) -->
+  <g transform="translate(340,110)" class="shadow">
+    <rect x="0" y="40" width="130" height="140" rx="18" fill="#2b2b2b" stroke="#555" stroke-width="2"/>
+
+    <!-- onde curve che rappresentano pagine/compressione -->
+    <path d="M20 70 C40 60, 70 60, 90 70" fill="none" stroke="#999" stroke-width="6" stroke-linecap="round"/>
+    <path d="M20 100 C40 90, 70 90, 90 100" fill="none" stroke="#777" stroke-width="6" stroke-linecap="round"/>
+    <path d="M20 130 C40 120, 70 120, 90 130" fill="none" stroke="#666" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <!-- cartella minimal -->
+  <g transform="translate(330,260)" class="shadow">
+    <rect x="0" y="10" width="130" height="60" rx="6" fill="#303030" stroke="#555" stroke-width="2"/>
+    <path d="M0 10 L26 -6 L62 -6 L130 10" fill="#3a3a3a" stroke="#555" stroke-width="2"/>
+  </g>
+
+</svg>

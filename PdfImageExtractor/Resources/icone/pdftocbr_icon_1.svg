@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- pdftocbr-icon.svg - icona senza testo per tema scuro -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="pdftocbr icon dark theme no text">
+  <defs>
+    <style>
+      .shadow { filter: drop-shadow(0 6px 10px rgba(0,0,0,0.45)); }
+    </style>
+    <linearGradient id="pdfgrad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#ff6b6b"/>
+      <stop offset="1" stop-color="#c0392b"/>
+    </linearGradient>
+    <linearGradient id="imggrad" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f6d365"/>
+      <stop offset="1" stop-color="#fda085"/>
+    </linearGradient>
+  </defs>
+
+  <!-- sfondo trasparente per tema scuro -->
+  <rect x="0" y="0" width="512" height="512" fill="none"/>
+
+  <!-- PDF page (left) -->
+  <g transform="translate(60,70)" class="shadow">
+    <rect x="0" y="0" width="220" height="300" rx="14" fill="#1e1e1e" stroke="#444" stroke-width="2"/>
+    <!-- red header -->
+    <rect x="0" y="0" width="220" height="56" rx="9" fill="url(#pdfgrad)"/>
+
+    <!-- image thumbnail block -->
+    <rect x="18" y="74" width="184" height="192" rx="8" fill="url(#imggrad)"/>
+    <!-- mountain silhouette -->
+    <path d="M28 246 L78 150 L118 190 L162 126 L198 246 Z" fill="#2c3e50" opacity="0.33"/>
+    <!-- sun -->
+    <circle cx="152" cy="110" r="12" fill="#ffe17a" opacity="0.95"/>
+  </g>
+
+  <!-- Arrow (center) -->
+  <g transform="translate(300,180)" class="shadow">
+    <path d="M0 40 L56 40 L56 16 L120 88 L56 160 L56 136 L0 136 Z" fill="#dcdcdc"/>
+  </g>
+
+  <!-- CBR/archive box (right) -->
+  <g transform="translate(360,100)" class="shadow">
+    <rect x="0" y="48" width="110" height="140" rx="12" fill="#2a2a2a" stroke="#555" stroke-width="2"/>
+    <rect x="12" y="64" width="86" height="20" rx="4" fill="#3a3a3a"/>
+    <rect x="12" y="96" width="86" height="20" rx="4" fill="#3a3a3a"/>
+    <rect x="12" y="128" width="86" height="20" rx="4" fill="#3a3a3a"/>
+  </g>
+
+  <!-- folder (extract to folder) -->
+  <g transform="translate(330,265)" class="shadow">
+    <rect x="0" y="8" width="130" height="70" rx="8" fill="#3c3c3c" stroke="#555" stroke-width="1"/>
+    <path d="M-2 8 L28 -8 L68 -8 L130 8" fill="#4a4a4a" stroke="#555" stroke-width="1"/>
+  </g>
+
+</svg>

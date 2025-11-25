@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- pdftocbr-icon.svg - versione minimal per tema scuro, immagine semplificata -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="pdftocbr minimal dark icon">
+  <defs>
+    <style>
+      .shadow { filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4)); }
+    </style>
+  </defs>
+
+  <!-- sfondo trasparente -->
+  <rect width="512" height="512" fill="none"/>
+
+  <!-- PDF block minimal -->
+  <g transform="translate(70,70)" class="shadow">
+    <rect x="0" y="0" width="200" height="260" rx="12" fill="#1f1f1f" stroke="#555" stroke-width="2"/>
+    <!-- header rosso minimal -->
+    <rect x="0" y="0" width="200" height="44" rx="8" fill="#c0392b"/>
+
+    <!-- immagine minimal: cornice + due triangoli tipo "montagna" stilizzata -->
+    <rect x="20" y="64" width="160" height="160" rx="8" fill="#292929" stroke="#444" stroke-width="2"/>
+
+    <!-- triangoli minimal -->
+    <path d="M40 200 L90 120 L140 200 Z" fill="#666"/>
+    <circle cx="150" cy="100" r="10" fill="#bbb"/>
+  </g>
+
+  <!-- freccia minimal -->
+  <g transform="translate(300,185)" class="shadow">
+    <path d="M0 40 L60 40 L60 20 L120 80 L60 140 L60 120 L0 120 Z" fill="#d0d0d0"/>
+  </g>
+
+  <!-- box CBR minimal -->
+  <g transform="translate(360,110)" class="shadow">
+    <rect x="0" y="40" width="110" height="120" rx="10" fill="#2b2b2b" stroke="#555" stroke-width="2"/>
+    <!-- due pannelli minimal -->
+    <rect x="14" y="58" width="82" height="24" rx="4" fill="#3a3a3a"/>
+    <rect x="14" y="96" width="82" height="24" rx="4" fill="#3a3a3a"/>
+  </g>
+
+  <!-- folder minimal -->
+  <g transform="translate(330,260)" class="shadow">
+    <rect x="0" y="10" width="130" height="60" rx="6" fill="#303030" stroke="#555" stroke-width="2"/>
+    <path d="M0 10 L26 -6 L62 -6 L130 10" fill="#3a3a3a" stroke="#555" stroke-width="2"/>
+  </g>
+
+</svg>

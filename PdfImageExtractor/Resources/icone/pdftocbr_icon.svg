@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- pdftocbr-icon.svg - icona vettoriale per "pdftocbr" -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="pdftocbr icon">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#e74c3c"/>
+      <stop offset="1" stop-color="#c0392b"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f6d365"/>
+      <stop offset="1" stop-color="#fda085"/>
+    </linearGradient>
+    <style>
+      .shadow { filter: drop-shadow(0 8px 12px rgba(0,0,0,0.18)); }
+      .txt { font: 600 42px/1 "Inter", "DejaVu Sans", sans-serif; fill: #2c3e50; }
+    </style>
+  </defs>
+
+  <!-- background circle -->
+  <circle cx="256" cy="256" r="250" fill="#ffffff"/>
+
+  <!-- PDF page (left) -->
+  <g transform="translate(70,70)" class="shadow">
+    <rect x="0" y="0" width="220" height="300" rx="14" fill="#ffffff" stroke="#dfe6ea" stroke-width="2"/>
+    <!-- red header -->
+    <rect x="0" y="0" width="220" height="56" rx="9" fill="url(#g1)"/>
+    <!-- folded corner -->
+    <path d="M188 0 L220 32 L188 32 Z" fill="#ffffff" opacity="0.2"/>
+    <!-- big PDF text -->
+    <text x="18" y="42" font-family="Inter, DejaVu Sans, sans-serif" font-weight="700" font-size="28" fill="#fff">PDF</text>
+
+    <!-- image thumbnail inside page -->
+    <rect x="18" y="74" width="184" height="192" rx="8" fill="url(#g2)"/>
+    <!-- mountain silhouette -->
+    <path d="M28 246 L78 150 L118 190 L162 126 L198 246 Z" fill="#2c3e50" opacity="0.18"/>
+    <!-- sun -->
+    <circle cx="152" cy="110" r="12" fill="#ffdd57" opacity="0.95"/>
+  </g>
+
+  <!-- Arrow to archive/folder (center) -->
+  <g transform="translate(320,170)" class="shadow">
+    <path d="M0 40 L56 40 L56 16 L120 88 L56 160 L56 136 L0 136 Z" fill="#34495e" opacity="0.95" transform="translate(-40,0) rotate(0)"/>
+    <!-- arrow head -->
+    <path d="M-18 78 L20 46 L20 68 L58 68 L58 88 L20 88 L20 110 Z" fill="#ffffff"/>
+  </g>
+
+  <!-- CBR/archive box (right) -->
+  <g transform="translate(360,90)" class="shadow">
+    <!-- box -->
+    <rect x="0" y="48" width="110" height="140" rx="12" fill="#f0f3f5" stroke="#d1d9dd" stroke-width="2"/>
+    <!-- small comic panel stripes -->
+    <rect x="12" y="64" width="86" height="20" rx="4" fill="#ecf0f1"/>
+    <rect x="12" y="96" width="86" height="20" rx="4" fill="#ecf0f1"/>
+    <rect x="12" y="128" width="86" height="20" rx="4" fill="#ecf0f1"/>
+    <!-- label CBR -->
+    <text x="55" y="38" font-family="Inter, DejaVu Sans, sans-serif" font-weight="700" font-size="26" text-anchor="middle" fill="#2c3e50">CBR</text>
+  </g>
+
+  <!-- small folder variant below archive to hint 'extract to folder' -->
+  <g transform="translate(340,260)">
+    <rect x="0" y="8" width="110" height="64" rx="8" fill="#fff3e0" stroke="#f2c078" stroke-width="1"/>
+    <path d="M-2 8 L28 -8 L68 -8 L110 8" fill="#ffe0b2" stroke="#f2c078" stroke-width="1"/>
+  </g>
+
+  <!-- app name (bottom) -->
+  <text x="256" y="470" text-anchor="middle" class="txt">pdftocbr</text>
+
+</svg>

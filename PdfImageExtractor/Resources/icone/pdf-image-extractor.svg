@@ -1,0 +1,62 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Drop Shadow -->
+  <rect x="32" y="32" width="448" height="448" rx="64" fill="black" fill-opacity="0.2"/>
+
+  <!-- Main Document Body (PDF Red) -->
+  <rect x="32" y="32" width="448" height="448" rx="64" fill="#E53935"/>
+  
+  <!-- Document Detail: Text Lines (Top Half) -->
+  <g fill="white" fill-opacity="0.5">
+    <rect x="80" y="90" width="352" height="24" rx="6"/>
+    <rect x="80" y="130" width="352" height="24" rx="6"/>
+    <rect x="80" y="170" width="240" height="24" rx="6"/>
+  </g>
+
+  <!-- The Extracted Images (Stacked Photos) -->
+  
+  <!-- Photo 1: Background Stack (Tilted Left) -->
+  <g transform="rotate(-8 256 300)">
+    <!-- Photo Frame -->
+    <rect x="136" y="220" width="240" height="200" rx="8" fill="#F5F5F5"/>
+    <!-- Photo Content (Generic Grey) -->
+    <rect x="152" y="236" width="208" height="140" rx="4" fill="#CFD8DC"/>
+    <!-- Shadow casting on the document -->
+    <rect x="136" y="220" width="240" height="200" rx="8" fill="black" fill-opacity="0.1"/>
+  </g>
+
+  <!-- Photo 2: Foreground Stack (Tilted Right - The "Hero" Image) -->
+  <g transform="rotate(5 256 320)">
+    <!-- Drop Shadow for the top photo -->
+    <rect x="140" y="244" width="240" height="200" rx="8" fill="black" fill-opacity="0.15" transform="translate(4, 4)"/>
+    
+    <!-- Photo Frame -->
+    <rect x="140" y="244" width="240" height="200" rx="4" fill="white"/>
+    
+    <!-- Photo Content Area -->
+    <mask id="photo-mask">
+        <rect x="156" y="260" width="208" height="140" rx="2" fill="white"/>
+    </mask>
+
+    <!-- Landscape Image Content -->
+    <g mask="url(#photo-mask)">
+        <!-- Sky -->
+        <rect x="156" y="260" width="208" height="140" fill="#29B6F6"/>
+        <!-- Sun -->
+        <circle cx="320" cy="290" r="18" fill="#FFEE58"/>
+        <!-- Mountains/Hills -->
+        <path d="M156 400L210 330L260 380L300 310L364 400H156Z" fill="#66BB6A"/>
+        <path d="M260 400L310 340L364 400H260Z" fill="#43A047"/>
+    </g>
+  </g>
+
+  <!-- Extraction Action Symbol (Arrow) -->
+  <circle cx="430" cy="430" r="40" fill="#FFC107"/>
+  <path d="M430 410V445M430 445L415 430M430 445L445 430" stroke="#3E2723" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Glossy Overlay -->
+  <linearGradient id="gloss-img" x1="32" y1="32" x2="256" y2="480" gradientUnits="userSpaceOnUse">
+    <stop stop-color="white" stop-opacity="0.1"/>
+    <stop offset="1" stop-color="white" stop-opacity="0"/>
+  </linearGradient>
+  <rect x="32" y="32" width="448" height="448" rx="64" fill="url(#gloss-img)" pointer-events="none"/>
+</svg>
