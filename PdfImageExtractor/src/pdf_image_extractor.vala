@@ -83,7 +83,7 @@ public class PdfImageExtractor : Object {
         int n_pages = document.get_n_pages();
         int total_images = 0;
 
-        progress(0, n_pages, "Avvio estrazione...");
+        progress(0, n_pages, _("Avvio estrazione..."));
 
         Archive.Write? archive_writer = null;
         if (use_zip) {
@@ -93,7 +93,7 @@ public class PdfImageExtractor : Object {
         }
 
         for (int i = 0; i < n_pages; i++) {
-            progress(i, n_pages, "Elaborazione pagina %d di %d...".printf(i + 1, n_pages));
+            progress(i, n_pages, _("Elaborazione pagina %d di %d...").printf(i + 1, n_pages));
             var page = document.get_page(i);
             var image_mapping = page.get_image_mapping();
             int page_img_count = 0;
@@ -117,10 +117,10 @@ public class PdfImageExtractor : Object {
                         if (use_zip) {
                             add_pixbuf_to_archive(archive_writer, pixbuf, entry_name);
                         } else {
-                            pixbuf.save(filename, "jpeg", "quality", "90", null);
+                            pixbuf.save(filename, "jpeg", "quality", "100", null);
                         }
                     } else {
-                        warning("Impossibile convertire immagine a pagina %d.".printf(i + 1));
+                        warning(_("Impossibile convertire immagine a pagina %d.").printf(i + 1));
                     }
                 }
 
@@ -166,7 +166,7 @@ public class PdfImageExtractor : Object {
             
             dir.delete();
         } catch (GLib.Error e) {
-            warning("Impossibile eliminare la cartella temporanea '%s': %s".printf(folderpath, e.message));
+            warning(_("Impossibile eliminare la cartella temporanea '%s': %s").printf(folderpath, e.message));
         }
     }
 
@@ -182,7 +182,7 @@ public class PdfImageExtractor : Object {
                     stream.write(data);
                     return Cairo.Status.SUCCESS;
                 }  catch (GLib.IOError e) {
-                    warning("Errore I/O durante la scrittura di '%s' in memoria: %s".printf(entry_name, e.message));
+                    warning(_("Errore I/O durante la scrittura di '%s' in memoria: %s").printf(entry_name, e.message));
                     return Cairo.Status.WRITE_ERROR;
                 }
             });
@@ -199,13 +199,13 @@ public class PdfImageExtractor : Object {
             entry.set_perm(0644);
 
             if (writer.write_header (entry) != Archive.Result.OK) {
-                error("Errore scrivendo l'header per %s".printf(entry_name));
+                error(_("Errore scrivendo l'header per %s").printf(entry_name));
             }
 
             // Add the actual content of the file
             writer?.write_data(bytes);
         } catch (GLib.Error e) {
-            warning("Errore durante l'aggiunta di '%s' all'archivio: %s".printf(entry_name, e.message));
+            warning(_("Errore durante l'aggiunta di '%s' all'archivio: %s").printf(entry_name, e.message));
         }
     }
 
@@ -226,14 +226,14 @@ public class PdfImageExtractor : Object {
             entry.set_perm(0644);
 
             if (writer.write_header (entry) != Archive.Result.OK) {
-                error("Errore scrivendo l'header per %s".printf(entry_name));
+                error(_("Errore scrivendo l'header per %s").printf(entry_name));
             }
 
             // Add the actual content of the file
             writer?.write_data(buffer);
 
         } catch (GLib.Error e) {
-            warning("Errore durante l'aggiunta di '%s' all'archivio: %s".printf(entry_name, e.message));
+            warning(_("Errore durante l'aggiunta di '%s' all'archivio: %s").printf(entry_name, e.message));
         }
     }
 
@@ -250,7 +250,7 @@ public class PdfImageExtractor : Object {
                 GLib.error("%s", stderr_str);
             }
         } catch (SpawnError e) {
-            error("Errore nell'eseguire il comando 'rar'. Assicurati che sia installato e nel PATH. Dettagli: %s".printf(e.message));
+            error(_("Errore nell'eseguire il comando 'rar'. Assicurati che sia installato e nel PATH.\n Dettagli: %s").printf(e.message));
         }
     }
 
