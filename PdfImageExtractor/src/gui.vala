@@ -151,7 +151,7 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
 
         // 2. Modalità Output (Cartella, ZIP, RAR)
         grid.attach (new Label (_("Tipo Output:")), 0, 1, 1, 1);
-        string[] modes = { _("Cartella"), _("Archivio ZIP (.zip)"), _("Archivio RAR (.rar)") };
+        string[] modes = { _("Cartella"), _("Archivio CBZ (.cbz)"), _("Archivio CBR (.cbr)") };
         mode_dropdown = new DropDown.from_strings (modes);
         mode_dropdown.notify["selected"].connect (on_mode_changed);
         grid.attach (mode_dropdown, 1, 1, 2, 1);
@@ -237,9 +237,9 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         dialog.title = title;
 
         if (selected_mode == 1) {
-            dialog.initial_name = _("immagini.zip");
+            dialog.initial_name = _("immagini.cbz");
         } else if (selected_mode == 2) {
-            dialog.initial_name = _("immagini.rar");
+            dialog.initial_name = _("immagini.cbr");
         }
 
         try {
@@ -306,13 +306,13 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         progress_bar.remove_css_class("red");
         string error_msg = "<span foreground=\"#FF5555\">%s: %s</span>".printf(_("Errore"), message);
         log_message(error_msg);
-        warning(error_msg); // Log to console as well for debugging
+        error(message); // Log to console as well for debugging
     }
 
     private void on_extraction_warning(string message) {
         string warning_msg = "<span foreground=\"#ffff00\">%s: %s</span>".printf(_("Warning"), message);
         log_message(warning_msg);
-        warning("%s".printf(warning_msg)); // Log to console as well for debugging
+        warning("%s".printf(message)); // Log to console as well for debugging
     }
 
     private void set_inputs_sensitive (bool sensitive) {

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PdfToCbr\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-28 16:25+0100\n"
+"POT-Creation-Date: 2025-11-28 19:42+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,11 +42,11 @@ msgid "Cartella"
 msgstr ""
 
 #: src/gui.vala:154
-msgid "Archivio ZIP (.zip)"
+msgid "Archivio CBZ (.cbz)"
 msgstr ""
 
 #: src/gui.vala:154
-msgid "Archivio RAR (.rar)"
+msgid "Archivio CBR (.cbr)"
 msgstr ""
 
 #. 3. Output Path
@@ -89,11 +89,11 @@ msgid "Salva Archivio"
 msgstr ""
 
 #: src/gui.vala:240
-msgid "immagini.zip"
+msgid "immagini.cbz"
 msgstr ""
 
 #: src/gui.vala:242
-msgid "immagini.rar"
+msgid "immagini.cbr"
 msgstr ""
 
 #: src/gui.vala:263
@@ -124,6 +124,68 @@ msgstr ""
 
 #: src/gui.vala:313
 msgid "Warning"
+msgstr ""
+
+#: src/main_cli.vala:10
+msgid "Percorso di output (cartella o file .cbz/.cbr)"
+msgstr ""
+
+#: src/main_cli.vala:11
+msgid "PERCORSO"
+msgstr ""
+
+#: src/main_cli.vala:12
+msgid "Formato immagine (png o jpg)"
+msgstr ""
+
+#: src/main_cli.vala:13
+msgid "FORMATO"
+msgstr ""
+
+#: src/main_cli.vala:24
+msgid "Estrae tutte le immagini da un file PDF."
+msgstr ""
+
+#: src/main_cli.vala:28
+#, c-format
+msgid "Errore nel parsing delle opzioni: %s\n"
+msgstr ""
+
+#: src/main_cli.vala:29 src/main_cli.vala:35 src/main_cli.vala:41
+#, c-format
+msgid "Esegui '%s --help' per maggiori informazioni.\n"
+msgstr ""
+
+#: src/main_cli.vala:34
+msgid "Errore: l'opzione --output è obbligatoria.\n"
+msgstr ""
+
+#: src/main_cli.vala:40
+msgid "Errore: specificare un file PDF di input.\n"
+msgstr ""
+
+#: src/main_cli.vala:50
+#, c-format
+msgid "Errore: Formato '%s' non supportato.\n"
+msgstr ""
+
+#: src/main_cli.vala:55
+#, c-format
+msgid "Errore: Il file '%s' non esiste.\n"
+msgstr ""
+
+#: src/main_cli.vala:67
+#, c-format
+msgid ""
+"\n"
+"Finito! %d immagini salvate in '%s'.\n"
+msgstr ""
+
+#: src/main_cli.vala:71
+#, c-format
+msgid ""
+"\n"
+"Errore: %s\n"
 msgstr ""
 
 #: src/pdf_image_extractor.vala:96

@@ -65,8 +65,8 @@ public class PdfImageExtractor : Object {
         If there is an error while removing the files and folders, an error will be thrown.
     */
     private void _do_extraction(string input_path, string final_output_path, string format) throws GLib.Error {
-        bool use_zip = final_output_path.has_suffix(".zip");
-        bool use_rar = final_output_path.has_suffix(".rar");
+        bool use_zip = final_output_path.has_suffix(".cbz");
+        bool use_rar = final_output_path.has_suffix(".cbr");
 
         string temp_dir_path = "";
         string work_dir = final_output_path;
