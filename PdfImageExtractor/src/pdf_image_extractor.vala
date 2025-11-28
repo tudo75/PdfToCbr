@@ -33,6 +33,12 @@ public class PdfImageExtractor : Object {
      */
     public signal void error(string message);
 
+    /**
+     * Segnale emesso in caso di warning durante l'estrazione.
+     * @param message Il messaggio di warning.
+     */
+    public signal void warning(string message);
+
     public PdfImageExtractor() {
         Object();
     }
@@ -114,7 +120,7 @@ public class PdfImageExtractor : Object {
                             pixbuf.save(filename, "jpeg", "quality", "90", null);
                         }
                     } else {
-                        warning("Impossibile convertire immagine a pagina %d.", i + 1);
+                        warning("Impossibile convertire immagine a pagina %d.".printf(i + 1));
                     }
                 }
 
@@ -137,7 +143,7 @@ public class PdfImageExtractor : Object {
         finished(total_images, final_output_path);
     }
 
-    private static void remove_files_and_folders(string folderpath) {
+    private void remove_files_and_folders(string folderpath) {
         try {
             var dir = File.new_for_path(folderpath);
 
@@ -160,14 +166,14 @@ public class PdfImageExtractor : Object {
             
             dir.delete();
         } catch (GLib.Error e) {
-            warning("Impossibile eliminare la cartella temporanea '%s': %s", folderpath, e.message);
+            warning("Impossibile eliminare la cartella temporanea '%s': %s".printf(folderpath, e.message));
         }
     }
 
     /**
      * Aggiunge una Cairo.Surface (come PNG) a un archivio libarchive.
      */
-    private static void add_surface_to_archive(Archive.Write? writer, Cairo.Surface surface, string entry_name) {
+    private void add_surface_to_archive(Archive.Write? writer, Cairo.Surface surface, string entry_name) {
         try {
             // Usa un flusso in memoria per ottenere i dati del PNG
             MemoryOutputStream stream = new MemoryOutputStream(null);
@@ -176,7 +182,7 @@ public class PdfImageExtractor : Object {
                     stream.write(data);
                     return Cairo.Status.SUCCESS;
                 }  catch (GLib.IOError e) {
-                    warning("Errore I/O durante la scrittura di '%s' in memoria: %s", entry_name, e.message);
+                    warning("Errore I/O durante la scrittura di '%s' in memoria: %s".printf(entry_name, e.message));
                     return Cairo.Status.WRITE_ERROR;
                 }
             });
@@ -193,20 +199,20 @@ public class PdfImageExtractor : Object {
             entry.set_perm(0644);
 
             if (writer.write_header (entry) != Archive.Result.OK) {
-                GLib.error("Errore scrivendo l'header per %s", entry_name);
+                error("Errore scrivendo l'header per %s".printf(entry_name));
             }
 
             // Add the actual content of the file
             writer?.write_data(bytes);
         } catch (GLib.Error e) {
-            warning("Errore durante l'aggiunta di '%s' all'archivio: %s", entry_name, e.message);
+            warning("Errore durante l'aggiunta di '%s' all'archivio: %s".printf(entry_name, e.message));
         }
     }
 
     /**
      * Aggiunge un Gdk.Pixbuf (come JPG) a un archivio libarchive.
      */
-    private static void add_pixbuf_to_archive(Archive.Write? writer, Gdk.Pixbuf pixbuf, string entry_name) {
+    private void add_pixbuf_to_archive(Archive.Write? writer, Gdk.Pixbuf pixbuf, string entry_name) {
         try {
             // Salva il pixbuf in un buffer di memoria come JPEG
             uint8[] buffer;
@@ -220,21 +226,21 @@ public class PdfImageExtractor : Object {
             entry.set_perm(0644);
 
             if (writer.write_header (entry) != Archive.Result.OK) {
-                GLib.error("Errore scrivendo l'header per %s", entry_name);
+                error("Errore scrivendo l'header per %s".printf(entry_name));
             }
 
             // Add the actual content of the file
             writer?.write_data(buffer);
 
         } catch (GLib.Error e) {
-            warning("Errore durante l'aggiunta di '%s' all'archivio: %s", entry_name, e.message);
+            warning("Errore durante l'aggiunta di '%s' all'archivio: %s".printf(entry_name, e.message));
         }
     }
 
     /**
      * Crea un archivio RAR usando il comando 'rar' esterno.
      */
-    private static void create_rar_archive(string archive_path, string source_dir) {
+    private void create_rar_archive(string archive_path, string source_dir) {
         try {
             string[] argv = {"rar", "a", "-ep1", "-o+", archive_path, source_dir + "/*"};
             string? stdout_str, stderr_str;
@@ -244,7 +250,7 @@ public class PdfImageExtractor : Object {
                 GLib.error("%s", stderr_str);
             }
         } catch (SpawnError e) {
-            GLib.error("Errore nell'eseguire il comando 'rar'. Assicurati che sia installato e nel PATH. Dettagli: %s".printf(e.message));
+            error("Errore nell'eseguire il comando 'rar'. Assicurati che sia installato e nel PATH. Dettagli: %s".printf(e.message));
         }
     }
 
