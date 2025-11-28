@@ -22,7 +22,7 @@ dependencies = [
 ]
 
 conf_data = configuration_data()
-conf_data.set('APP_ID', meson.project_name())
+conf_data.set('APP_ID', 'com.github.tudo75.pdftocbr')
 conf_data.set('PROJECT_NAME', meson.project_name())
 conf_data.set('GETTEXT_PACKAGE', meson.project_name())
 conf_data.set('VERSION', meson.project_version())
