@@ -14,9 +14,9 @@ public class PdfExtractorApp : Gtk.Application {
         // congfigure i18n localization
         Intl.setlocale (LocaleCategory.ALL, "");
         string langpack_dir = Path.build_filename (APP_INSTALL_PREFIX, "share", "locale");
-        Intl.bindtextdomain (APP_ID, langpack_dir);
-        Intl.bind_textdomain_codeset (APP_ID, "UTF-8");
-        Intl.textdomain (APP_ID);
+        Intl.bindtextdomain (APP_LANG_DOMAIN, langpack_dir);
+        Intl.bind_textdomain_codeset (APP_LANG_DOMAIN, "UTF-8");
+        Intl.textdomain (APP_LANG_DOMAIN);
     }
 
     protected override void activate () {
@@ -41,6 +41,24 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         Object (application: app, title: _("PdfToCbr"));
         this.set_default_size (500, 450);
 
+        var css_provider = new Gtk.CssProvider();
+
+        string csses = """
+            progressbar text {
+                font-size: 1.2em;
+            }
+            .red {
+                color: #FF5555; 
+            }
+            .green {
+                color: #55FF55; 
+            }
+        """;
+
+        css_provider.load_from_string (csses);
+        //css_provider.load_from_resource (path);
+        Gtk.StyleContext.add_provider_for_display (Gdk.Display.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
+
         var content_box = new Box (Orientation.VERTICAL, 15);
         content_box.margin_top = 20;
         content_box.margin_bottom = 20;
@@ -49,7 +67,7 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         this.set_child (content_box);
 
         // Titolo
-        var title_label = new Label ("<span size='x-large' weight='bold'>%s</span>".printf (_("Estrattore PDF")));
+        var title_label = new Label ("<span size='x-large' weight='bold'>%s</span>".printf (_("PdfToCbr")));
         title_label.use_markup = true;
         content_box.append (title_label);
 
@@ -111,6 +129,7 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         var scrolled_window = new ScrolledWindow ();
         scrolled_window.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
         scrolled_window.set_size_request (-1, 100);
+        scrolled_window.set_has_frame (true);
         scrolled_window.vexpand = true;
         log_view = new TextView ();
         log_view.editable = false;
@@ -124,6 +143,7 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         extractor.progress.connect(on_extraction_progress);
         extractor.finished.connect(on_extraction_finished);
         extractor.error.connect(on_extraction_error);
+        extractor.warning.connect(on_extraction_warning);
     }
 
     private async void on_browse_input () {
@@ -181,7 +201,7 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         string output_path = output_entry.text;
         
         if (input_path == "" || output_path == "") {
-            log_message(_("Errore: Seleziona sia il file di input che la destinazione."));
+            log_message("<span foreground=\"#FF5555\">%s</span>".printf (_("Errore: Seleziona sia il file di input che la destinazione.")));
             return; // No need for yield anymore
         }
 
@@ -213,17 +233,27 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
     private void on_extraction_finished(int total_images, string output_path) {
         set_inputs_sensitive(true);
         progress_bar.fraction = 1.0;
+        progress_bar.add_css_class("green");
         progress_bar.text = _("Completato!");
-        log_message(_("Successo: Estrazione di %d immagini completata!").printf(total_images));
+        progress_bar.remove_css_class("green");
+        log_message("<span foreground=\"#55FF55\">%s</span>".printf(_("Successo: Estrazione di %d immagini completata!").printf(total_images)));
     }
 
     private void on_extraction_error(string message) {
         set_inputs_sensitive(true);
         progress_bar.fraction = 0;
+        progress_bar.add_css_class("red");
         progress_bar.text = _("Errore");
-        string error_msg = _("Errore: %s").printf(message);
+        progress_bar.remove_css_class("red");
+        string error_msg = "<span foreground=\"#FF5555\">%s: %s</span>".printf(_("Errore"), message);
         log_message(error_msg);
         warning(error_msg); // Log to console as well for debugging
+    }
+
+    private void on_extraction_warning(string message) {
+        string warning_msg = "<span foreground=\"#ffff00\">%s: %s</span>".printf(_("Warning"), message);
+        log_message(warning_msg);
+        warning("%s".printf(warning_msg)); // Log to console as well for debugging
     }
 
     private void set_inputs_sensitive (bool sensitive) {
@@ -238,7 +268,7 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         Idle.add(() => {
             Gtk.TextIter iter;
             log_buffer.get_end_iter(out iter);
-            log_buffer.insert(ref iter, message + "\n", (message + "\n").length);
+            log_buffer.insert_markup(ref iter, message + "\n", (message + "\n").length);
             log_view.scroll_to_iter(iter, 0.0, true, 0.0, 1.0);
             return Source.REMOVE;
         });
