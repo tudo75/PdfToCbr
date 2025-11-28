@@ -41,9 +41,10 @@ src = files(
 
 # Define the executable
 executable(
-    'PdfToCbr-cli', 
-    src, 'src/main_cli.vala',
-#    config_header,
+    'PdfToCbr-cli',
+    'src/main_cli.vala',
+    src, 
+    config_header,
     dependencies: dependencies,
     install: true,
 )

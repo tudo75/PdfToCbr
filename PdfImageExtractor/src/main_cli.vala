@@ -7,10 +7,10 @@ public class PdfImageExtractorCli {
 
     private static string? output_path = null;
     private static string format = "png";
-    private const string dest_desc = _("Percorso di output (cartella o file .cbz/.cbr)");
-    private const string dest_placeholder = _("PERCORSO");
-    private const string format_desc = _("Formato immagine (png o jpg)");
-    private const string format_placeholder = _("FORMATO");
+    private const string dest_desc = "Percorso di output (cartella o file .cbz/.cbr)";
+    private const string dest_placeholder = "PERCORSO";
+    private const string format_desc = "Formato immagine (png o jpg)";
+    private const string format_placeholder = "FORMATO";
 
     private const OptionEntry[] options = {
         { "output", 'o', 0, OptionArg.STRING, ref output_path, dest_desc, dest_placeholder },
@@ -22,7 +22,8 @@ public class PdfImageExtractorCli {
         try {
             var context = new GLib.OptionContext ("<file_input.pdf>");
             context.set_summary (_("Estrae tutte le immagini da un file PDF."));
-            context.add_main_entries (options, null);
+			context.set_help_enabled (true);
+            context.add_main_entries (options, Constants.GETTEXT_PACKAGE);
             context.parse (ref args);
         } catch (GLib.OptionError e) {
             stderr.printf (_("Errore nel parsing delle opzioni: %s\n"), e.message);

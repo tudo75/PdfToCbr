@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PdfToCbr\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-28 19:42+0100\n"
+"POT-Creation-Date: 2025-11-28 20:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -126,62 +126,46 @@ msgstr ""
 msgid "Warning"
 msgstr ""
 
-#: src/main_cli.vala:10
-msgid "Percorso di output (cartella o file .cbz/.cbr)"
-msgstr ""
-
-#: src/main_cli.vala:11
-msgid "PERCORSO"
-msgstr ""
-
-#: src/main_cli.vala:12
-msgid "Formato immagine (png o jpg)"
-msgstr ""
-
-#: src/main_cli.vala:13
-msgid "FORMATO"
-msgstr ""
-
 #: src/main_cli.vala:24
 msgid "Estrae tutte le immagini da un file PDF."
 msgstr ""
 
-#: src/main_cli.vala:28
+#: src/main_cli.vala:29
 #, c-format
 msgid "Errore nel parsing delle opzioni: %s\n"
 msgstr ""
 
-#: src/main_cli.vala:29 src/main_cli.vala:35 src/main_cli.vala:41
+#: src/main_cli.vala:30 src/main_cli.vala:36 src/main_cli.vala:42
 #, c-format
 msgid "Esegui '%s --help' per maggiori informazioni.\n"
 msgstr ""
 
-#: src/main_cli.vala:34
+#: src/main_cli.vala:35
 msgid "Errore: l'opzione --output è obbligatoria.\n"
 msgstr ""
 
-#: src/main_cli.vala:40
+#: src/main_cli.vala:41
 msgid "Errore: specificare un file PDF di input.\n"
 msgstr ""
 
-#: src/main_cli.vala:50
+#: src/main_cli.vala:51
 #, c-format
 msgid "Errore: Formato '%s' non supportato.\n"
 msgstr ""
 
-#: src/main_cli.vala:55
+#: src/main_cli.vala:56
 #, c-format
 msgid "Errore: Il file '%s' non esiste.\n"
 msgstr ""
 
-#: src/main_cli.vala:67
+#: src/main_cli.vala:68
 #, c-format
 msgid ""
 "\n"
 "Finito! %d immagini salvate in '%s'.\n"
 msgstr ""
 
-#: src/main_cli.vala:71
+#: src/main_cli.vala:72
 #, c-format
 msgid ""
 "\n"
