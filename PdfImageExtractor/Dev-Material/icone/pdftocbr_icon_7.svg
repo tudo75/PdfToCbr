@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- pdftocbr-icon.svg - PDF diviso in due: in alto a sinistra PDF, in basso a destra CBR -->
+
+<svg
+   viewBox="0 0 512 512"
+   width="512"
+   height="512"
+   aria-label="pdftocbr split icon"
+   version="1.1"
+   id="svg11"
+   sodipodi:docname="pdftocbr_icon_7.svg"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   inkscape:export-filename="pdftocbr_icon_7.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview11"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.1117597"
+     inkscape:cx="269.84248"
+     inkscape:cy="281.08592"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="33"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg11" />
+  <defs
+     id="defs1">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect14"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,26.596273,0,1 @ F,0,0,1,0,27.759007,0,1 @ F,0,0,1,0,26.596273,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect13"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,20.842846,0,1 @ F,0,0,1,0,20.966699,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect12"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect11"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <style
+       id="style1">
+      .shadow { filter: drop-shadow(0 4px 8px rgba(0,0,0,0.45)); }
+    </style>
+    <linearGradient
+       id="7"
+       x1="-8.9230003"
+       x2="15.298"
+       y1="-74.991997"
+       y2="33.905998"
+       gradientTransform="matrix(1.1179,0,0,1.1179,-2.5699,-2.7831)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="F"
+         stop-color="#eeeeec"
+         offset="0" />
+      <stop
+         id="G"
+         stop-color="#eeeeec"
+         stop-opacity="0"
+         offset="1" />
+    </linearGradient>
+  </defs>
+  <!-- sfondo arrotondato -->
+  <!-- Documento diviso in diagonale -->
+  <g
+     transform="matrix(10.010037,0,0,10.010037,13.508849,14.950294)"
+     id="g1"
+     style="display:none">
+    <rect
+       x="1.4378"
+       y="1.2938"
+       width="45.574001"
+       height="45.574001"
+       rx="5.6858001"
+       fill="#222222"
+       stroke-width="1.0851"
+       id="rect1" />
+    <path
+       id="A"
+       d="m 7.4912,1.7933 c -3.0621,0 -5.4847,2.4226 -5.4847,5.4847 v 33.537 c 0,3.0621 2.4226,5.4847 5.4847,5.4847 h 33.537 c 3.0621,0 5.4847,-2.4226 5.4847,-5.4847 V 7.278 c 0,-3.0621 -2.4226,-5.4847 -5.4847,-5.4847 z"
+       fill="#555753"
+       stroke-width="1.1179"
+       style="display:inline;fill:#341e1e;fill-opacity:1" />
+    <path
+       id="C"
+       d="m 7.4912,1.7933 c -3.0621,0 -5.4847,2.4226 -5.4847,5.4847 v 19.179 c 13.51,-5.7383 28.709,-10.698 44.506,-14.009 V 7.2777 c 0,-3.0621 -2.4226,-5.4847 -5.4847,-5.4847 z"
+       fill="url(#7)"
+       opacity="0.6"
+       stroke-width="1.1179"
+       style="display:inline;fill:url(#7)" />
+  </g>
+  <g
+     transform="matrix(1.2284413,0,0,1.2284413,71.69281,40.981778)"
+     class="shadow"
+     id="g11">
+    <!-- Forma generale del documento -->
+    <rect
+       x="0"
+       y="0"
+       width="300"
+       height="350"
+       rx="22"
+       fill="#1f1f1f"
+       stroke="#555555"
+       stroke-width="2"
+       id="rect2"
+       style="display:inline;fill:#252525;fill-opacity:1"
+       sodipodi:insensitive="true" />
+    <!-- Divisione diagonale -->
+    <clipPath
+       id="clip-pdf">
+      <path
+         d="M 0,0 H 300 L 0,350 Z"
+         id="path2" />
+    </clipPath>
+    <clipPath
+       id="clip-cbr">
+      <path
+         d="M 300,350 V 0 L 0,350 Z"
+         id="path3" />
+    </clipPath>
+    <!-- Parte PDF (alto sinistra) -->
+    <g
+       clip-path="url(#clip-pdf)"
+       id="g7"
+       style="display:inline"
+       transform="translate(1.0667428,1.0667428)">
+      <path
+         x="0"
+         y="0"
+         width="300"
+         height="350"
+         fill="#2a2a2a"
+         id="rect3"
+         style="display:inline"
+         sodipodi:type="rect"
+         inkscape:path-effect="#path-effect12"
+         d="M 26.425781,0 H 273.57422 C 288.2141,0 300,11.785898 300,26.425781 V 323.57422 C 300,338.2141 288.2141,350 273.57422,350 H 26.425781 C 11.785898,350 0,338.2141 0,323.57422 V 26.425781 C 0,11.785898 11.785898,0 26.425781,0 Z"
+         rx="26.425781"
+         sodipodi:insensitive="true" />
+      <path
+         x="0.10163718"
+         y="-0.15473321"
+         width="297.88681"
+         height="60"
+         fill="#c0392b"
+         id="rect4"
+         style="display:inline"
+         inkscape:path-effect="#path-effect13"
+         sodipodi:type="rect"
+         d="M 20.944483,-0.15473321 H 277.02175 A 20.966699,20.966699 45 0 1 297.98845,20.811966 V 59.845267 H 0.10163718 V 20.688113 A 20.842846,20.842846 135 0 1 20.944483,-0.15473321 Z"
+         sodipodi:insensitive="true" />
+      <rect
+         x="39.305988"
+         y="140.84955"
+         width="180"
+         height="16"
+         rx="6"
+         fill="#555555"
+         id="rect5"
+         style="display:inline" />
+      <rect
+         x="39.305988"
+         y="180.84955"
+         width="180"
+         height="16"
+         rx="6"
+         fill="#666666"
+         id="rect6"
+         style="display:inline" />
+      <rect
+         x="39.305988"
+         y="220.84955"
+         width="180"
+         height="16"
+         rx="6"
+         fill="#777777"
+         id="rect7"
+         style="display:inline" />
+    </g>
+    <!-- Parte CBR (basso destra) -->
+    <g
+       clip-path="url(#clip-cbr)"
+       id="g10"
+       style="display:inline">
+      <!-- onde curve stilizzate per rappresentare pagine tipo fumetto/CBR -->
+      <g
+         transform="matrix(1.1021921,0,0,1.1021921,98.624911,57.660877)"
+         class="shadow"
+         id="g4"
+         style="display:inline">
+        <!-- immagine minimal -->
+        <rect
+           x="-14.925321"
+           y="44.345848"
+           width="160"
+           height="160"
+           rx="8"
+           fill="#292929"
+           stroke="#444444"
+           stroke-width="2"
+           id="rect4-3"
+           style="fill:#292929;fill-opacity:1" />
+        <path
+           d="M 23.605737,177.53811 73.605736,97.538113 123.60574,177.53811 Z"
+           fill="#666666"
+           id="path4" />
+        <circle
+           cx="115.07468"
+           cy="80.345848"
+           r="10"
+           fill="#bbbbbb"
+           id="circle4" />
+      </g>
+    </g>
+  </g>
+</svg>

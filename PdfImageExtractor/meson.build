@@ -45,6 +45,7 @@ executable(
     src, 'src/main_cli.vala',
 #    config_header,
     dependencies: dependencies,
+    install: true,
 )
 
 # Eseguibile con nuova interfaccia GTK4
@@ -54,6 +55,8 @@ executable(
     src,
     config_header,
     dependencies: dependencies + [dependency('gtk4')],
+    install: true,
 )
 
 subdir('po')
+subdir('resources')

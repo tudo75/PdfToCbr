@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PdfToCbr\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-25 18:44+0100\n"
+"POT-Creation-Date: 2025-11-28 14:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,115 +11,118 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/gui.vala:41
-msgid "PdfToCbr"
+#: src/gui.vala:78
+msgid "Applicazione per trasformare PDF in CBR o CBZ"
+msgstr ""
+
+#: src/gui.vala:79
+msgid "Copyright 2025 Nicola \"tudo75\" Tudino"
 msgstr ""
 
 #. Titolo
-#: src/gui.vala:52
-msgid "Estrattore PDF"
+#: src/gui.vala:107 src/gui.vala:133
+msgid "PdfToCbr"
 msgstr ""
 
 #. 1. Input PDF
-#: src/gui.vala:64
+#: src/gui.vala:145
 msgid "File PDF:"
 msgstr ""
 
-#: src/gui.vala:66
+#: src/gui.vala:147
 msgid "Seleziona un PDF..."
 msgstr ""
 
 #. 2. Modalità Output (Cartella, ZIP, RAR)
-#: src/gui.vala:76
+#: src/gui.vala:157
 msgid "Tipo Output:"
 msgstr ""
 
-#: src/gui.vala:77
+#: src/gui.vala:158
 msgid "Cartella"
 msgstr ""
 
-#: src/gui.vala:77
+#: src/gui.vala:158
 msgid "Archivio ZIP (.zip)"
 msgstr ""
 
-#: src/gui.vala:77
+#: src/gui.vala:158
 msgid "Archivio RAR (.rar)"
 msgstr ""
 
 #. 3. Output Path
-#: src/gui.vala:83
+#: src/gui.vala:164
 msgid "Destinazione:"
 msgstr ""
 
-#: src/gui.vala:85
+#: src/gui.vala:166
 msgid "Seleziona destinazione..."
 msgstr ""
 
 #. 4. Formato Immagine
-#: src/gui.vala:93
+#: src/gui.vala:174
 msgid "Formato:"
 msgstr ""
 
-#: src/gui.vala:101
+#: src/gui.vala:182
 msgid "Pronto"
 msgstr ""
 
 #. Bottone Estrai
-#: src/gui.vala:105
+#: src/gui.vala:186
 msgid "Estrai Immagini"
 msgstr ""
 
-#: src/gui.vala:131
+#: src/gui.vala:214
 msgid "Seleziona PDF"
 msgstr ""
 
-#: src/gui.vala:134
+#: src/gui.vala:217
 msgid "Documenti PDF"
 msgstr ""
 
-#: src/gui.vala:155
+#: src/gui.vala:238
 msgid "Seleziona Cartella"
 msgstr ""
 
-#: src/gui.vala:155
+#: src/gui.vala:238
 msgid "Salva Archivio"
 msgstr ""
 
-#: src/gui.vala:161
+#: src/gui.vala:244
 msgid "immagini.zip"
 msgstr ""
 
-#: src/gui.vala:163
+#: src/gui.vala:246
 msgid "immagini.rar"
 msgstr ""
 
-#: src/gui.vala:184
+#: src/gui.vala:267
 msgid "Errore: Seleziona sia il file di input che la destinazione."
 msgstr ""
 
 #. UI Update: Disabilita controlli e avvia animazione
-#: src/gui.vala:192
+#: src/gui.vala:275
 msgid "Estrazione in corso..."
 msgstr ""
 
-#: src/gui.vala:194
+#: src/gui.vala:277
 msgid "Avvio estrazione..."
 msgstr ""
 
-#: src/gui.vala:216
+#: src/gui.vala:300
 msgid "Completato!"
 msgstr ""
 
-#: src/gui.vala:217
+#: src/gui.vala:302
 #, c-format
 msgid "Successo: Estrazione di %d immagini completata!"
 msgstr ""
 
-#: src/gui.vala:223
+#: src/gui.vala:309 src/gui.vala:311
 msgid "Errore"
 msgstr ""
 
-#: src/gui.vala:224
-#, c-format
-msgid "Errore: %s"
+#: src/gui.vala:317
+msgid "Warning"
 msgstr ""

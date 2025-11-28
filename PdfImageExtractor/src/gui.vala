@@ -2,11 +2,14 @@ using Gtk;
 using GLib;
 
 public class PdfExtractorApp : Gtk.Application {
-    private const string APP_NAME = Constants.PROJECT_NAME;
+    public const string APP_NAME = Constants.PROJECT_NAME;
     private const string VERSION = Constants.VERSION;
     private const string APP_ID = Constants.APP_ID;
     private const string APP_LANG_DOMAIN = Constants.GETTEXT_PACKAGE;
     private const string APP_INSTALL_PREFIX = Constants.PREFIX;
+        
+    private Gtk.HeaderBar headerbar;
+    private ExtractorWindow window;
 
     public PdfExtractorApp () {
         Object (application_id: APP_ID, flags: ApplicationFlags.FLAGS_NONE);
@@ -20,8 +23,62 @@ public class PdfExtractorApp : Gtk.Application {
     }
 
     protected override void activate () {
-        var window = new ExtractorWindow (this);
+        window = new ExtractorWindow (this);
+        this.init_headerbar ();
         window.present ();
+    }
+
+    /**
+        * init_headerbar:
+        *
+        * #Gtk.HeaderBar constructor for the Application
+        */
+    private void init_headerbar () {
+        headerbar = new Gtk.HeaderBar ();
+        headerbar.set_title_widget (new Gtk.Label (APP_NAME));
+        headerbar.set_hexpand (true);
+
+        //Gtk.Image logo = new Gtk.Image.from_icon_name (APP_NAME);
+        //headerbar.pack_start (logo);
+            
+        Gtk.Button btn_about = new Gtk.Button.from_icon_name ("help-about-symbolic");
+        btn_about.clicked.connect (on_about_action);
+        headerbar.pack_start (btn_about);
+
+        window.set_titlebar (headerbar);
+    }
+
+    /**
+        * about_dialog:
+        *
+        * Create and display a #Gtk.AboutDialog window.
+        */
+    private void on_about_action () {
+        // Configure the dialog:
+        Gtk.AboutDialog dialog = new Gtk.AboutDialog ();
+        dialog.set_destroy_with_parent (true);
+        dialog.set_transient_for (this.active_window);
+        dialog.set_modal (true);
+
+        dialog.set_logo_icon_name (APP_NAME);
+
+        dialog.authors = {"Nicola \"tudo75\" Tudino"};
+        //dialog.artists = {"Nicola \"tudo75\" Tudino"};
+        dialog.documenters = {"Nicola \"tudo75\" Tudino"};
+        //dialog.translator_credits = ("Nicola \"tudo75\" Tudino");
+
+        dialog.program_name = APP_NAME;
+        dialog.comments = _("Applicazione per trasformare PDF in CBR o CBZ");
+        dialog.copyright = _("Copyright 2025 Nicola \"tudo75\" Tudino");
+        dialog.version = VERSION;
+
+        dialog.set_license_type (Gtk.License.GPL_3_0_ONLY);
+
+        dialog.website = "http://github.com/tudo75/PdfToCbr";
+        dialog.website_label = "Repository Github";
+
+        // Show the dialog:
+        dialog.present ();
     }
 }
 
@@ -36,13 +93,14 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
     private PdfImageExtractor extractor;
     private TextView log_view;
     private TextBuffer log_buffer;
+    private const int APP_WIDTH = 400; //default 500
+    private const int APP_HEIGHT = 450; //default 450
 
     public ExtractorWindow (Gtk.Application app) {
         Object (application: app, title: _("PdfToCbr"));
-        this.set_default_size (500, 450);
+        this.set_default_size (APP_WIDTH, APP_HEIGHT);
 
-        var css_provider = new Gtk.CssProvider();
-
+        Gtk.CssProvider css_provider = new Gtk.CssProvider();
         string csses = """
             progressbar text {
                 font-size: 1.2em;
@@ -54,12 +112,10 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
                 color: #55FF55; 
             }
         """;
-
         css_provider.load_from_string (csses);
-        //css_provider.load_from_resource (path);
         Gtk.StyleContext.add_provider_for_display (Gdk.Display.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
 
-        var content_box = new Box (Orientation.VERTICAL, 15);
+        Box content_box = new Box (Orientation.VERTICAL, 15);
         content_box.margin_top = 20;
         content_box.margin_bottom = 20;
         content_box.margin_start = 20;
@@ -67,12 +123,15 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         this.set_child (content_box);
 
         // Titolo
-        var title_label = new Label ("<span size='x-large' weight='bold'>%s</span>".printf (_("PdfToCbr")));
-        title_label.use_markup = true;
-        content_box.append (title_label);
+        Gtk.Image logo = new Gtk.Image.from_icon_name (PdfExtractorApp.APP_NAME);
+        logo.set_pixel_size (128);
+        logo.set_size_request (128, 128);
+        logo.set_tooltip_text (PdfExtractorApp.APP_NAME);
+        content_box.append (logo);
+
 
         // Griglia per i controlli
-        var grid = new Grid ();
+        Grid grid = new Grid ();
         grid.row_spacing = 10;
         grid.column_spacing = 10;
         grid.halign = Align.CENTER;
@@ -86,7 +145,7 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         input_entry.width_chars = 30;
         grid.attach (input_entry, 1, 0, 1, 1);
         
-        var input_btn = new Button.from_icon_name ("document-open-symbolic");
+        Button input_btn = new Button.from_icon_name ("document-open-symbolic");
         input_btn.clicked.connect (on_browse_input);
         grid.attach (input_btn, 2, 0, 1, 1);
 
@@ -126,7 +185,7 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         content_box.append (extract_button);
 
         // Area per i messaggi di log
-        var scrolled_window = new ScrolledWindow ();
+        ScrolledWindow scrolled_window = new ScrolledWindow ();
         scrolled_window.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
         scrolled_window.set_size_request (-1, 100);
         scrolled_window.set_has_frame (true);
@@ -147,18 +206,18 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
     }
 
     private async void on_browse_input () {
-        var dialog = new FileDialog();
+        FileDialog dialog = new FileDialog();
         dialog.title = _("Seleziona PDF");
-        var filter = new FileFilter ();
+        FileFilter filter = new FileFilter ();
         filter.add_pattern ("*.pdf");
         filter.name = _("Documenti PDF");
         
-        var filters = new GLib.ListStore(typeof(FileFilter));
+        GLib.ListStore filters = new GLib.ListStore(typeof(FileFilter));
         filters.append(filter);
         dialog.filters = filters;
 
         try {
-            var file = yield dialog.open(this, null);
+            GLib.File file = yield dialog.open(this, null);
             input_entry.text = file.get_path();
         } catch (Error e) {} // L'utente ha annullato
     }
@@ -174,7 +233,7 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
         FileChooserAction action = (selected_mode == 0) ? FileChooserAction.SELECT_FOLDER : FileChooserAction.SAVE;
         string title = (selected_mode == 0) ? _("Seleziona Cartella") : _("Salva Archivio");
         
-        var dialog = new FileDialog();
+        FileDialog dialog = new FileDialog();
         dialog.title = title;
 
         if (selected_mode == 1) {
@@ -185,10 +244,10 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
 
         try {
             if (action == FileChooserAction.SAVE) {
-                var file = yield dialog.save(this, null);
+                GLib.File file = yield dialog.save(this, null);
                 output_entry.text = file.get_path();
             } else { // SELECT_FOLDER
-                var folder = yield dialog.select_folder(this, null);
+                GLib.File folder = yield dialog.select_folder(this, null);
                 output_entry.text = folder.get_path();
             }
         } catch (Error e) {
@@ -276,6 +335,6 @@ public class ExtractorWindow : Gtk.ApplicationWindow {
 }
 
 public static int main (string[] args) {
-    var app = new PdfExtractorApp ();
+    PdfExtractorApp app = new PdfExtractorApp ();
     return app.run (args);
 }

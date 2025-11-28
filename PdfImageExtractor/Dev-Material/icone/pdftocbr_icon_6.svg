@@ -1,45 +1,161 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- pdftocbr-icon.svg - PDF diviso in due: in alto a sinistra PDF, in basso a destra CBR -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" aria-label="pdftocbr split icon">
-  <defs>
-    <style>
+
+<svg
+   viewBox="0 0 512 512"
+   width="512"
+   height="512"
+   aria-label="pdftocbr split icon"
+   version="1.1"
+   id="svg11"
+   sodipodi:docname="pdftocbr_icon_6.svg"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview11"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.5722656"
+     inkscape:cx="256"
+     inkscape:cy="256"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="33"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg11" />
+  <defs
+     id="defs1">
+    <style
+       id="style1">
       .shadow { filter: drop-shadow(0 4px 8px rgba(0,0,0,0.45)); }
     </style>
   </defs>
-
   <!-- sfondo arrotondato -->
-  <rect x="32" y="32" width="448" height="448" rx="40" fill="#111" stroke="#333" stroke-width="3"/>
-
+  <rect
+     x="1.7028825"
+     y="1.7028825"
+     width="508.59424"
+     height="508.59424"
+     rx="45.410202"
+     fill="#111111"
+     stroke="#333333"
+     stroke-width="3.40577"
+     id="rect1" />
   <!-- Documento diviso in diagonale -->
-  <g transform="translate(100,80)" class="shadow">
+  <g
+     transform="matrix(1.135255,0,0,1.135255,78.900221,56.195122)"
+     class="shadow"
+     id="g11">
     <!-- Forma generale del documento -->
-    <rect x="0" y="0" width="300" height="350" rx="22" fill="#1f1f1f" stroke="#555" stroke-width="2"/>
-
+    <rect
+       x="0"
+       y="0"
+       width="300"
+       height="350"
+       rx="22"
+       fill="#1f1f1f"
+       stroke="#555555"
+       stroke-width="2"
+       id="rect2" />
     <!-- Divisione diagonale -->
-    <clipPath id="clip-pdf">
-      <path d="M0 0 L300 0 L0 350 Z"/>
+    <clipPath
+       id="clip-pdf">
+      <path
+         d="M 0,0 H 300 L 0,350 Z"
+         id="path2" />
     </clipPath>
-    <clipPath id="clip-cbr">
-      <path d="M300 350 L300 0 L0 350 Z"/>
+    <clipPath
+       id="clip-cbr">
+      <path
+         d="M 300,350 V 0 L 0,350 Z"
+         id="path3" />
     </clipPath>
-
     <!-- Parte PDF (alto sinistra) -->
-    <g clip-path="url(#clip-pdf)">
-      <rect x="0" y="0" width="300" height="350" fill="#2a2a2a"/>
-      <rect x="0" y="0" width="300" height="60" rx="10" fill="#c0392b"/>
-      <rect x="40" y="100" width="180" height="16" rx="6" fill="#555"/>
-      <rect x="40" y="140" width="180" height="16" rx="6" fill="#666"/>
-      <rect x="40" y="180" width="180" height="16" rx="6" fill="#777"/>
+    <g
+       clip-path="url(#clip-pdf)"
+       id="g7">
+      <rect
+         x="0"
+         y="0"
+         width="300"
+         height="350"
+         fill="#2a2a2a"
+         id="rect3" />
+      <rect
+         x="0"
+         y="0"
+         width="300"
+         height="60"
+         rx="10"
+         fill="#c0392b"
+         id="rect4" />
+      <rect
+         x="40"
+         y="100"
+         width="180"
+         height="16"
+         rx="6"
+         fill="#555555"
+         id="rect5" />
+      <rect
+         x="40"
+         y="140"
+         width="180"
+         height="16"
+         rx="6"
+         fill="#666666"
+         id="rect6" />
+      <rect
+         x="40"
+         y="180"
+         width="180"
+         height="16"
+         rx="6"
+         fill="#777777"
+         id="rect7" />
     </g>
-
     <!-- Parte CBR (basso destra) -->
-    <g clip-path="url(#clip-cbr)">
-      <rect x="0" y="0" width="300" height="350" fill="#222"/>
+    <g
+       clip-path="url(#clip-cbr)"
+       id="g10">
+      <rect
+         x="0"
+         y="0"
+         width="300"
+         height="350"
+         fill="#222222"
+         id="rect8" />
       <!-- onde curve stilizzate per rappresentare pagine tipo fumetto/CBR -->
-      <path d="M40 220 C80 200, 140 200, 180 220" fill="none" stroke="#999" stroke-width="10" stroke-linecap="round"/>
-      <path d="M40 260 C80 240, 140 240, 180 260" fill="none" stroke="#888" stroke-width="10" stroke-linecap="round"/>
-      <path d="M40 300 C80 280, 140 280, 180 300" fill="none" stroke="#777" stroke-width="10" stroke-linecap="round"/>
+      <path
+         d="m 40,220 c 40,-20 100,-20 140,0"
+         fill="none"
+         stroke="#999999"
+         stroke-width="10"
+         stroke-linecap="round"
+         id="path8" />
+      <path
+         d="m 40,260 c 40,-20 100,-20 140,0"
+         fill="none"
+         stroke="#888888"
+         stroke-width="10"
+         stroke-linecap="round"
+         id="path9" />
+      <path
+         d="m 40,300 c 40,-20 100,-20 140,0"
+         fill="none"
+         stroke="#777777"
+         stroke-width="10"
+         stroke-linecap="round"
+         id="path10" />
     </g>
   </g>
-
 </svg>
