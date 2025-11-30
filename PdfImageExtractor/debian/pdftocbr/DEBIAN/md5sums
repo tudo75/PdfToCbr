@@ -1,8 +1,8 @@
-b19d05e964bc4fbf0ae9cc468896c64f  usr/bin/PdfToCbr
-1b4c19202d5eeab533bd289c2b99c67e  usr/bin/PdfToCbr-cli
-7479bed8dcb2a6377a7d1788e080b16a  usr/share/applications/PdfToCbr.desktop
-557143484120a6aee02843459e16a860  usr/share/doc/pdftocbr/changelog.gz
+780520e118be478d3a1d2391c1049cee  usr/bin/pdftocbr
+f6b6b91cce1cb80b1ab25cd06d75827d  usr/bin/pdftocbr-cli
+716a2b7a5a9c23532a45c209962787d5  usr/share/applications/pdftocbr.desktop
+640a43e309f781c4e1d25c3d6622e32a  usr/share/doc/pdftocbr/changelog.gz
 6ff62135123e3c7bf0375c8c529538b6  usr/share/doc/pdftocbr/copyright
-9279171c2afb648f8b61a376d499cab7  usr/share/icons/hicolor/scalable/apps/PdfToCbr.svg
+9279171c2afb648f8b61a376d499cab7  usr/share/icons/hicolor/scalable/apps/pdftocbr.svg
 2079c317f1712afce4abaab44cc1f2ba  usr/share/locale/en/LC_MESSAGES/PdfToCbr.mo
-ec1ac6db36cfc83212c848e1624bb98a  usr/share/locale/it/LC_MESSAGES/PdfToCbr.mo
+46d302970887a3ae5db28f32d03872c0  usr/share/locale/it/LC_MESSAGES/PdfToCbr.mo

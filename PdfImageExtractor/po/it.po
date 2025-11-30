@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PdfToCbr\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-30 16:32+0100\n"
+"POT-Creation-Date: 2025-11-30 20:01+0100\n"
 "PO-Revision-Date: 2025-11-30 16:34+0100\n"
 "Last-Translator: Nicola Tudino <tudo75@hotmail.com>\n"
 "Language-Team: Nicola Tudino <tudo75@hotmail.com>\n"
@@ -29,10 +29,6 @@ msgstr "Applicazione per trasformare PDF in CBR o CBZ"
 #: src/gui.vala:97
 msgid "Copyright 2025 Nicola \"tudo75\" Tudino"
 msgstr "Copyright 2025 Nicola \"tudo75\" Tudino"
-
-#: src/gui.vala:125
-msgid "PdfToCbr"
-msgstr "PdfToCbr"
 
 #. 1. Input PDF
 #: src/gui.vala:166
@@ -227,3 +223,6 @@ msgstr ""
 "Errore nell'esecuzione del comando 'rar'. Verifica che il pacchetto sia "
 "installato e che l'eseguibile sia nel PATH.\n"
 "Dettagli: %s"
+
+#~ msgid "PdfToCbr"
+#~ msgstr "PdfToCbr"

@@ -122,7 +122,7 @@ namespace PdfToCbr {
         private const int APP_HEIGHT = 450; //default 450
 
         public ExtractorWindow (Gtk.Application app) {
-            Object (application: app, title: APP_NAME);
+            Object (application: app, title: PdfToCbr.APP_NAME);
             this.set_default_size (APP_WIDTH, APP_HEIGHT);
 
             Gtk.CssProvider css_provider = new Gtk.CssProvider();

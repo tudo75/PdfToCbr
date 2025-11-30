@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PdfToCbr\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-30 03:15+0100\n"
+"POT-Creation-Date: 2025-11-30 20:01+0100\n"
 "PO-Revision-Date: 2025-11-30 16:36+0100\n"
 "Last-Translator: Nicola Tudino <tudo75@hotmail.com>\n"
 "Language-Team: \n"
@@ -20,10 +20,6 @@ msgstr ""
 msgid "Copyright 2025 Nicola \"tudo75\" Tudino"
 msgstr ""
 
-#: src/gui.vala:125
-msgid "PdfToCbr"
-msgstr ""
-
 #. 1. Input PDF
 #: src/gui.vala:166
 msgid "File PDF:"
@@ -33,9 +29,9 @@ msgstr ""
 msgid "Choose a PDF..."
 msgstr ""
 
-#. 2. Modalità Output (Cartella, ZIP, RAR)
+#. 2. Output Mode (Folder, CBZ, CBR)
 #: src/gui.vala:178
-msgid "Tipo Output:"
+msgid "Output mode:"
 msgstr ""
 
 #: src/gui.vala:179
@@ -119,11 +115,7 @@ msgstr ""
 msgid "Success: Completed extraction of %d images!"
 msgstr ""
 
-#: src/gui.vala:353
-msgid "Errore"
-msgstr ""
-
-#: src/gui.vala:355
+#: src/gui.vala:353 src/gui.vala:355
 msgid "Error"
 msgstr ""
 
@@ -132,7 +124,7 @@ msgid "Warning"
 msgstr ""
 
 #: src/main_cli.vala:59
-msgid "Extraxt all images from a PDF file."
+msgid "Extract all images from a PDF file."
 msgstr ""
 
 #: src/main_cli.vala:64
