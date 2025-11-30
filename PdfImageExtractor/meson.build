@@ -61,3 +61,76 @@ executable(
 
 subdir('po')
 subdir('resources')
+
+
+
+# create api documentation from code
+valadoc = find_program(
+    'valadoc',
+    required: false,
+)
+
+docsrc1 = [
+    '../build/config.vala',
+    '../src/pdf_image_extractor.vala',
+    '../src/main_cli.vala',
+]
+
+docsrc2 = [
+    '../build/config.vala',
+    '../src/pdf_image_extractor.vala',
+    '../src/gui.vala',
+]
+
+doc1 = custom_target(
+    'documentation cli',
+	output: 'doc-cli',
+    build_by_default: false,
+	command: [
+        valadoc, 
+        '--verbose',
+        '--force',
+        '--internal',
+        '--private',
+        '--use-svg-images',
+        '--package-name=PdfToCbr-Cli',
+        '--package-version=0.0.1',
+        '--pkg=glib-2.0',
+        '--pkg=gio-2.0',
+        '--pkg=poppler-glib',
+        '--pkg=cairo',
+        '--pkg=libarchive',
+        '--pkg=posix',
+        '--pkg=gdk-pixbuf-2.0',
+        '--directory=../doc-cli',
+        '--target-glib=auto',
+        docsrc1
+    ],
+)
+
+doc2 = custom_target(
+    'documentation gui',
+	output: 'doc-gui',
+    build_by_default: false,
+	command: [
+        valadoc, 
+        '--verbose',
+        '--force',
+        '--internal',
+        '--private',
+        '--use-svg-images',
+        '--package-name=PdfToCbr',
+        '--package-version=0.0.1',
+        '--pkg=gtk4',
+        '--pkg=glib-2.0',
+        '--pkg=gio-2.0',
+        '--pkg=poppler-glib',
+        '--pkg=cairo',
+        '--pkg=libarchive',
+        '--pkg=posix',
+        '--pkg=gdk-pixbuf-2.0',
+        '--directory=../doc-gui',
+        '--target-glib=auto',
+        docsrc2
+    ],
+)

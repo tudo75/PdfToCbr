@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PdfToCbr\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-28 20:04+0100\n"
+"POT-Creation-Date: 2025-11-30 03:15+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,201 +11,205 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/gui.vala:71
-msgid "Applicazione per trasformare PDF in CBR o CBZ"
+#: src/gui.vala:96
+msgid "Utility to convert PDF in CBR or CBZ"
 msgstr ""
 
-#: src/gui.vala:72
+#: src/gui.vala:97
 msgid "Copyright 2025 Nicola \"tudo75\" Tudino"
 msgstr ""
 
-#: src/gui.vala:100
+#: src/gui.vala:125
 msgid "PdfToCbr"
 msgstr ""
 
 #. 1. Input PDF
-#: src/gui.vala:141
+#: src/gui.vala:166
 msgid "File PDF:"
 msgstr ""
 
-#: src/gui.vala:143
-msgid "Seleziona un PDF..."
+#: src/gui.vala:168
+msgid "Choose a PDF..."
 msgstr ""
 
 #. 2. Modalità Output (Cartella, ZIP, RAR)
-#: src/gui.vala:153
+#: src/gui.vala:178
 msgid "Tipo Output:"
 msgstr ""
 
-#: src/gui.vala:154
-msgid "Cartella"
+#: src/gui.vala:179
+msgid "Folder"
 msgstr ""
 
-#: src/gui.vala:154
-msgid "Archivio CBZ (.cbz)"
+#: src/gui.vala:179
+msgid "CBZ archive (.cbz)"
 msgstr ""
 
-#: src/gui.vala:154
-msgid "Archivio CBR (.cbr)"
+#: src/gui.vala:179
+msgid "CBR archive (.cbr)"
 msgstr ""
 
 #. 3. Output Path
-#: src/gui.vala:160
-msgid "Destinazione:"
+#: src/gui.vala:185
+msgid "Destination:"
 msgstr ""
 
-#: src/gui.vala:162
-msgid "Seleziona destinazione..."
+#: src/gui.vala:187
+msgid "Choose destination..."
 msgstr ""
 
 #. 4. Formato Immagine
-#: src/gui.vala:170
-msgid "Formato:"
+#: src/gui.vala:195
+msgid "Format:"
 msgstr ""
 
-#: src/gui.vala:178
-msgid "Pronto"
+#: src/gui.vala:204
+msgid "Ready"
 msgstr ""
 
 #. Bottone Estrai
-#: src/gui.vala:182
-msgid "Estrai Immagini"
+#: src/gui.vala:208
+msgid "Extract images"
 msgstr ""
 
-#: src/gui.vala:210
-msgid "Seleziona PDF"
+#: src/gui.vala:236
+msgid "Select PDF"
 msgstr ""
 
-#: src/gui.vala:213
-msgid "Documenti PDF"
+#: src/gui.vala:239
+msgid "PDF documents"
 msgstr ""
 
-#: src/gui.vala:234
-msgid "Seleziona Cartella"
+#: src/gui.vala:262
+msgid "Select folder"
 msgstr ""
 
-#: src/gui.vala:234
-msgid "Salva Archivio"
+#: src/gui.vala:262
+msgid "Select archive"
 msgstr ""
 
-#: src/gui.vala:240
-msgid "immagini.cbz"
+#: src/gui.vala:268
+msgid "images.cbz"
 msgstr ""
 
-#: src/gui.vala:242
-msgid "immagini.cbr"
+#: src/gui.vala:270
+msgid "images.cbr"
 msgstr ""
 
-#: src/gui.vala:263
-msgid "Errore: Seleziona sia il file di input che la destinazione."
+#: src/gui.vala:291
+msgid "Error: Input file and destination must be selected"
 msgstr ""
 
-#. UI Update: Disabilita controlli e avvia animazione
-#: src/gui.vala:271
-msgid "Estrazione in corso..."
+#. UI Update: Disable controls and start progress animation
+#: src/gui.vala:299
+msgid "Extraction in progress..."
 msgstr ""
 
-#: src/gui.vala:273 src/pdf_image_extractor.vala:86
-msgid "Avvio estrazione..."
+#: src/gui.vala:301 src/pdf_image_extractor.vala:120
+msgid "Start extraction..."
 msgstr ""
 
-#: src/gui.vala:296
-msgid "Completato!"
+#: src/gui.vala:337
+msgid "Finished!"
 msgstr ""
 
-#: src/gui.vala:298
+#: src/gui.vala:339
 #, c-format
-msgid "Successo: Estrazione di %d immagini completata!"
+msgid "Success: Completed extraction of %d images!"
 msgstr ""
 
-#: src/gui.vala:305 src/gui.vala:307
+#: src/gui.vala:353
 msgid "Errore"
 msgstr ""
 
-#: src/gui.vala:313
+#: src/gui.vala:355
+msgid "Error"
+msgstr ""
+
+#: src/gui.vala:368
 msgid "Warning"
 msgstr ""
 
-#: src/main_cli.vala:24
-msgid "Estrae tutte le immagini da un file PDF."
+#: src/main_cli.vala:59
+msgid "Extraxt all images from a PDF file."
 msgstr ""
 
-#: src/main_cli.vala:29
+#: src/main_cli.vala:64
 #, c-format
-msgid "Errore nel parsing delle opzioni: %s\n"
+msgid "Error during options parsing: %s\n"
 msgstr ""
 
-#: src/main_cli.vala:30 src/main_cli.vala:36 src/main_cli.vala:42
+#: src/main_cli.vala:65 src/main_cli.vala:71 src/main_cli.vala:77
 #, c-format
-msgid "Esegui '%s --help' per maggiori informazioni.\n"
+msgid "For more details ececute '%s --help'.\n"
 msgstr ""
 
-#: src/main_cli.vala:35
-msgid "Errore: l'opzione --output è obbligatoria.\n"
+#: src/main_cli.vala:70
+msgid "Error: --output option is mandatory.\n"
 msgstr ""
 
-#: src/main_cli.vala:41
-msgid "Errore: specificare un file PDF di input.\n"
+#: src/main_cli.vala:76
+msgid "Error: give a PDF input file.\n"
 msgstr ""
 
-#: src/main_cli.vala:51
+#: src/main_cli.vala:86
 #, c-format
-msgid "Errore: Formato '%s' non supportato.\n"
+msgid "Error: not supported '%s' format.\n"
 msgstr ""
 
-#: src/main_cli.vala:56
+#: src/main_cli.vala:91
 #, c-format
-msgid "Errore: Il file '%s' non esiste.\n"
+msgid "Error: '%s' file not found.\n"
 msgstr ""
 
-#: src/main_cli.vala:68
-#, c-format
-msgid ""
-"\n"
-"Finito! %d immagini salvate in '%s'.\n"
-msgstr ""
-
-#: src/main_cli.vala:72
+#: src/main_cli.vala:103
 #, c-format
 msgid ""
 "\n"
-"Errore: %s\n"
+"Finished! %d images saved in '%s'.\n"
 msgstr ""
 
-#: src/pdf_image_extractor.vala:96
-#, c-format
-msgid "Elaborazione pagina %d di %d..."
-msgstr ""
-
-#: src/pdf_image_extractor.vala:123
-#, c-format
-msgid "Impossibile convertire immagine a pagina %d."
-msgstr ""
-
-#: src/pdf_image_extractor.vala:169
-#, c-format
-msgid "Impossibile eliminare la cartella temporanea '%s': %s"
-msgstr ""
-
-#: src/pdf_image_extractor.vala:185
-#, c-format
-msgid "Errore I/O durante la scrittura di '%s' in memoria: %s"
-msgstr ""
-
-#: src/pdf_image_extractor.vala:202 src/pdf_image_extractor.vala:229
-#, c-format
-msgid "Errore scrivendo l'header per %s"
-msgstr ""
-
-#: src/pdf_image_extractor.vala:208 src/pdf_image_extractor.vala:236
-#, c-format
-msgid "Errore durante l'aggiunta di '%s' all'archivio: %s"
-msgstr ""
-
-#: src/pdf_image_extractor.vala:253
+#: src/main_cli.vala:107
 #, c-format
 msgid ""
-"Errore nell'eseguire il comando 'rar'. Assicurati che sia installato e nel "
-"PATH.\n"
-" Dettagli: %s"
+"\n"
+"Error: %s\n"
+msgstr ""
+
+#: src/pdf_image_extractor.vala:130
+#, c-format
+msgid "Page %d of %d..."
+msgstr ""
+
+#: src/pdf_image_extractor.vala:157
+#, c-format
+msgid "Impossible conversion of image at page %d."
+msgstr ""
+
+#: src/pdf_image_extractor.vala:208
+#, c-format
+msgid "Impossible to delete the temporary folder '%s': %s"
+msgstr ""
+
+#: src/pdf_image_extractor.vala:229
+#, c-format
+msgid "I/O error writing '%s' to memory: %s"
+msgstr ""
+
+#: src/pdf_image_extractor.vala:246 src/pdf_image_extractor.vala:278
+#, c-format
+msgid "Error writing %s header"
+msgstr ""
+
+#: src/pdf_image_extractor.vala:252 src/pdf_image_extractor.vala:285
+#, c-format
+msgid "Error adding '%s' to the archve %s"
+msgstr ""
+
+#: src/pdf_image_extractor.vala:306
+#, c-format
+msgid ""
+"Error executing the 'rar' command. Check that the rar package is installed "
+"and the executable is in PATH.\n"
+" Details: %s"
 msgstr ""
