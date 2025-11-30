@@ -122,7 +122,7 @@ namespace PdfToCbr {
         private const int APP_HEIGHT = 450; //default 450
 
         public ExtractorWindow (Gtk.Application app) {
-            Object (application: app, title: _("PdfToCbr"));
+            Object (application: app, title: APP_NAME);
             this.set_default_size (APP_WIDTH, APP_HEIGHT);
 
             Gtk.CssProvider css_provider = new Gtk.CssProvider();
@@ -148,7 +148,7 @@ namespace PdfToCbr {
             this.set_child (content_box);
 
             // Titolo
-            Gtk.Image logo = new Gtk.Image.from_icon_name (PdfToCbr.APP_NAME);
+            Gtk.Image logo = new Gtk.Image.from_icon_name ("pdftocbr");
             logo.set_pixel_size (128);
             logo.set_size_request (128, 128);
             logo.set_tooltip_text (PdfToCbr.APP_NAME);

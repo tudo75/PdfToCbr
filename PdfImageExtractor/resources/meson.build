@@ -1,6 +1,6 @@
 # install icon
 install_data(
-  'PdfToCbr.svg',
+  'pdftocbr.svg',
   install_dir: join_paths(
         get_option('datadir'), 
         'icons', 
@@ -12,7 +12,7 @@ install_data(
 
 # install launcher
 install_data(
-  'PdfToCbr.desktop',
+  'pdftocbr.desktop',
   install_dir: join_paths(
         get_option('datadir'), 
         'applications',

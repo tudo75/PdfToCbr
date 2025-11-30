@@ -1,4 +1,4 @@
-project('PdfToCbr', ['vala', 'c'], license: 'GPL-3.0-only', license_files: 'LICENSE', version: '0.0.1')
+project('PdfToCbr', ['vala', 'c'], license: 'GPL-3.0-only', license_files: 'LICENSE', version: '0.0.2')
 
 # Include the translations module
 i18n = import('i18n')
@@ -22,7 +22,7 @@ dependencies = [
 ]
 
 conf_data = configuration_data()
-conf_data.set('APP_ID', 'com.github.tudo75.pdftocbr')
+conf_data.set('APP_ID', 'com.github.tudo75.')
 conf_data.set('PROJECT_NAME', meson.project_name())
 conf_data.set('GETTEXT_PACKAGE', meson.project_name())
 conf_data.set('VERSION', meson.project_version())
@@ -41,7 +41,7 @@ src = files(
 
 # Define the executable
 executable(
-    'PdfToCbr-cli',
+    'pdftocbr-cli',
     'src/main_cli.vala',
     src, 
     config_header,
@@ -51,7 +51,7 @@ executable(
 
 # Eseguibile con nuova interfaccia GTK4
 executable(
-    'PdfToCbr',
+    'pdftocbr',
     'src/gui.vala',
     src,
     config_header,

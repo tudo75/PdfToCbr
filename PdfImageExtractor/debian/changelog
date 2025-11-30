@@ -1,3 +1,8 @@
+pdftocbr (0.0.2) trixie; urgency=medium
+  * Fixed executables, icon and desktop file to lowercase
+  * Minor fixes
+ -- tudo75 <tudo75@users.noreply.github.com>  Sun, 30 Nov 2025 19:59:31 +0100
+
 pdftocbr (0.0.1) trixie; urgency=medium
   * Initial release
  -- tudo75 <tudo75@users.noreply.github.com>  Sun, 30 Nov 2025 17:40:03 +0100

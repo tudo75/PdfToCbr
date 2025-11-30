@@ -18,4 +18,4 @@ Package: pdftocbr
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Description: Utility to convert PDF in CBR or CBZ
- pdftocbr is a GUI to extract images from a PDF file and save them in a folder or as CBZ/CBR archives. 
+ PdfToCbr is a GUI to extract images from a PDF file and save them in a folder or as CBZ/CBR archives. 
