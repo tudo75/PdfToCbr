@@ -1,3 +1,6 @@
+output
+doc-*
+
 meson-configure.txt
 test_files
 src-images
