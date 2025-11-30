@@ -174,8 +174,8 @@ namespace PdfToCbr {
             input_btn.clicked.connect (on_browse_input);
             grid.attach (input_btn, 2, 0, 1, 1);
 
-            // 2. Modalità Output (Cartella, ZIP, RAR)
-            grid.attach (new Label (_("Tipo Output:")), 0, 1, 1, 1);
+            // 2. Output Mode (Folder, CBZ, CBR)
+            grid.attach (new Label (_("Output mode:")), 0, 1, 1, 1);
             string[] modes = { _("Folder"), _("CBZ archive (.cbz)"), _("CBR archive (.cbr)") };
             mode_dropdown = new DropDown.from_strings (modes);
             mode_dropdown.notify["selected"].connect (on_mode_changed);
@@ -350,7 +350,7 @@ namespace PdfToCbr {
             set_inputs_sensitive(true);
             progress_bar.fraction = 0;
             progress_bar.add_css_class("red");
-            progress_bar.text = _("Errore");
+            progress_bar.text = _("Error");
             progress_bar.remove_css_class("red");
             string error_msg = "<span foreground=\"#FF5555\">%s: %s</span>".printf(_("Error"), message);
             log_message(error_msg);

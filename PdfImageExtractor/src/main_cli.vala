@@ -56,7 +56,7 @@ namespace PdfToCbr {
         public static int main(string[] args) {
             try {
                 var context = new GLib.OptionContext ("<file_input.pdf>");
-                context.set_summary (_("Extraxt all images from a PDF file."));
+                context.set_summary (_("Extract all images from a PDF file."));
                 context.set_help_enabled (true);
                 context.add_main_entries (options, Constants.GETTEXT_PACKAGE);
                 context.parse (ref args);
