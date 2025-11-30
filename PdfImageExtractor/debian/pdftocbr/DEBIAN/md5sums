@@ -1,0 +1,8 @@
+b19d05e964bc4fbf0ae9cc468896c64f  usr/bin/PdfToCbr
+1b4c19202d5eeab533bd289c2b99c67e  usr/bin/PdfToCbr-cli
+7479bed8dcb2a6377a7d1788e080b16a  usr/share/applications/PdfToCbr.desktop
+6fa8e8c7da68261bac54e7611ddd3e79  usr/share/doc/pdftocbr/changelog.gz
+6ff62135123e3c7bf0375c8c529538b6  usr/share/doc/pdftocbr/copyright
+9279171c2afb648f8b61a376d499cab7  usr/share/icons/hicolor/scalable/apps/PdfToCbr.svg
+106aff1a7e2131feef0e4294916bb5bd  usr/share/locale/en/LC_MESSAGES/PdfToCbr.mo
+76636649308d8e12750dda562a442c3f  usr/share/locale/it/LC_MESSAGES/PdfToCbr.mo

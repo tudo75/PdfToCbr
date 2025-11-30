@@ -1,0 +1,10 @@
+Package: pdftocbr
+Version: 0.0.1
+Architecture: amd64
+Maintainer: Nicola tudo75 Tudino <tudo75@users.noreply.github.com>
+Installed-Size: 119
+Depends: libarchive13t64 (>= 3.0.4), libc6 (>= 2.34), libcairo2 (>= 1.2.4), libgdk-pixbuf-2.0-0 (>= 2.22.0), libglib2.0-0t64 (>= 2.44.0), libgtk-4-1 (>= 4.12.0), libpoppler-glib8t64 (>= 0.18.0)
+Section: x11
+Priority: optional
+Description: Utility to convert PDF in CBR or CBZ
+ pdftocbr is a GUI to extract images from a PDF file and save them in a folder or as CBZ/CBR archives.
