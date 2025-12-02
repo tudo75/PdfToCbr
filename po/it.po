@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PdfToCbr\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-30 20:01+0100\n"
+"POT-Creation-Date: 2025-12-02 21:54+0100\n"
 "PO-Revision-Date: 2025-11-30 16:34+0100\n"
 "Last-Translator: Nicola Tudino <tudo75@hotmail.com>\n"
 "Language-Team: Nicola Tudino <tudo75@hotmail.com>\n"
@@ -22,114 +22,114 @@ msgstr ""
 "X-Poedit-SearchPath-0: src\n"
 "X-Poedit-SearchPath-1: resources/PdfToCbr.desktop\n"
 
-#: src/gui.vala:96
+#: src/gui.vala:101
 msgid "Utility to convert PDF in CBR or CBZ"
 msgstr "Applicazione per trasformare PDF in CBR o CBZ"
 
-#: src/gui.vala:97
+#: src/gui.vala:102
 msgid "Copyright 2025 Nicola \"tudo75\" Tudino"
 msgstr "Copyright 2025 Nicola \"tudo75\" Tudino"
 
 #. 1. Input PDF
-#: src/gui.vala:166
+#: src/gui.vala:187
 msgid "File PDF:"
 msgstr "File PDF:"
 
-#: src/gui.vala:168
+#: src/gui.vala:189
 msgid "Choose a PDF..."
 msgstr "Apri un PDF..."
 
 #. 2. Output Mode (Folder, CBZ, CBR)
-#: src/gui.vala:178
+#: src/gui.vala:199
 msgid "Output mode:"
 msgstr "Tipo Output:"
 
-#: src/gui.vala:179
+#: src/gui.vala:200
 msgid "Folder"
 msgstr "Cartella"
 
-#: src/gui.vala:179
+#: src/gui.vala:200
 msgid "CBZ archive (.cbz)"
 msgstr "Archivio CBZ (.cbz)"
 
-#: src/gui.vala:179
+#: src/gui.vala:200
 msgid "CBR archive (.cbr)"
 msgstr "Archivio CBR (.cbr)"
 
 #. 3. Output Path
-#: src/gui.vala:185
+#: src/gui.vala:206
 msgid "Destination:"
 msgstr "Destinazione:"
 
-#: src/gui.vala:187
+#: src/gui.vala:208
 msgid "Choose destination..."
 msgstr "Scegli una destinazione..."
 
 #. 4. Formato Immagine
-#: src/gui.vala:195
+#: src/gui.vala:216
 msgid "Format:"
 msgstr "Formato:"
 
-#: src/gui.vala:204
+#: src/gui.vala:225
 msgid "Ready"
 msgstr "Pronto"
 
 #. Bottone Estrai
-#: src/gui.vala:208
+#: src/gui.vala:229
 msgid "Extract images"
 msgstr "Estrai immagini"
 
-#: src/gui.vala:236
+#: src/gui.vala:257
 msgid "Select PDF"
 msgstr "Seleziona il PDF"
 
-#: src/gui.vala:239
+#: src/gui.vala:260
 msgid "PDF documents"
 msgstr "Documenti PDF"
 
-#: src/gui.vala:262
+#: src/gui.vala:283
 msgid "Select folder"
 msgstr "Seleziona la cartella"
 
-#: src/gui.vala:262
+#: src/gui.vala:283
 msgid "Select archive"
 msgstr "Seleziona l'archivio"
 
-#: src/gui.vala:268
+#: src/gui.vala:289
 msgid "images.cbz"
 msgstr "images.cbz"
 
-#: src/gui.vala:270
+#: src/gui.vala:291
 msgid "images.cbr"
 msgstr "images.cbr"
 
-#: src/gui.vala:291
+#: src/gui.vala:312
 msgid "Error: Input file and destination must be selected"
 msgstr "Errore: Il file sorgente e la destinazione devono essere selezionati"
 
 #. UI Update: Disable controls and start progress animation
-#: src/gui.vala:299
+#: src/gui.vala:320
 msgid "Extraction in progress..."
 msgstr "Estrazione in corso..."
 
-#: src/gui.vala:301 src/pdf_image_extractor.vala:120
+#: src/gui.vala:322 src/pdf_image_extractor.vala:120
 msgid "Start extraction..."
 msgstr "Avvia estrazione..."
 
-#: src/gui.vala:337
+#: src/gui.vala:358
 msgid "Finished!"
 msgstr "Finito!"
 
-#: src/gui.vala:339
+#: src/gui.vala:360
 #, c-format
 msgid "Success: Completed extraction of %d images!"
 msgstr "Successo: Completata l'estrazione di %d immagini!"
 
-#: src/gui.vala:353 src/gui.vala:355
+#: src/gui.vala:374 src/gui.vala:376
 msgid "Error"
 msgstr "Errore"
 
-#: src/gui.vala:368
+#: src/gui.vala:389
 msgid "Warning"
 msgstr "Warning"
 
@@ -223,6 +223,41 @@ msgstr ""
 "Errore nell'esecuzione del comando 'rar'. Verifica che il pacchetto sia "
 "installato e che l'eseguibile sia nel PATH.\n"
 "Dettagli: %s"
+
+#: src/batchmode.vala:50
+msgid "PdfToCbr Batch Converter"
+msgstr ""
+
+#. --- Drag and Drop Area ---
+#: src/batchmode.vala:64
+msgid "Drag & Drop PDF Files Here"
+msgstr ""
+
+#: src/batchmode.vala:89
+#, fuzzy
+msgid "Output Format:"
+msgstr "Tipo Output:"
+
+#. Default to CBZ
+#: src/batchmode.vala:95
+msgid "Clear List"
+msgstr ""
+
+#: src/batchmode.vala:106 src/batchmode.vala:202
+msgid "Convert All"
+msgstr ""
+
+#: src/batchmode.vala:134
+msgid "Done"
+msgstr ""
+
+#: src/batchmode.vala:151
+msgid "PDF File"
+msgstr ""
+
+#: src/batchmode.vala:186
+msgid "Converting..."
+msgstr ""
 
 #~ msgid "PdfToCbr"
 #~ msgstr "PdfToCbr"

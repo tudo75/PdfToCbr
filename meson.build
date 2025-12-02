@@ -53,6 +53,7 @@ executable(
 executable(
     'pdftocbr',
     'src/gui.vala',
+    'src/batchmode.vala',
     src,
     config_header,
     dependencies: dependencies + [dependency('gtk4')],
@@ -80,6 +81,7 @@ docsrc2 = [
     '../build/config.vala',
     '../src/pdf_image_extractor.vala',
     '../src/gui.vala',
+    '../src/batchmode.vala',
 ]
 
 doc1 = custom_target(

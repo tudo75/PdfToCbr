@@ -69,15 +69,20 @@ namespace PdfToCbr {
             Gtk.Button btn_about = new Gtk.Button.from_icon_name ("help-about-symbolic");
             btn_about.clicked.connect (on_about_action);
             headerbar.pack_start (btn_about);
+                
+            Gtk.Button btn_batchmode = new Gtk.Button.from_icon_name ("view-list-symbolic");
+            //btn_batchmode.set_label (_("Batch mode"));
+            btn_batchmode.clicked.connect (on_batchmode_action);
+            headerbar.pack_start (btn_batchmode);
 
             window.set_titlebar (headerbar);
         }
 
         /**
-            * about_dialog:
-            *
-            * Create and display a #Gtk.AboutDialog window.
-            */
+         * about_dialog:
+         *
+         * Create and display a #Gtk.AboutDialog window.
+         */
         private void on_about_action () {
             // Configure the dialog:
             Gtk.AboutDialog dialog = new Gtk.AboutDialog ();
@@ -85,7 +90,7 @@ namespace PdfToCbr {
             dialog.set_transient_for (this.active_window);
             dialog.set_modal (true);
 
-            dialog.set_logo_icon_name (APP_NAME);
+            dialog.set_logo_icon_name ("pdftocbr");
 
             dialog.authors = {"Nicola \"tudo75\" Tudino"};
             //dialog.artists = {"Nicola \"tudo75\" Tudino"};
@@ -105,6 +110,22 @@ namespace PdfToCbr {
             // Show the dialog:
             dialog.present ();
         }
+
+        /**
+         * Batch mode window:
+         *
+         * Create and display a #Gtk.Window to handle the batch mode conversion.
+         */
+        private void on_batchmode_action () {
+            this.window.set_inputs_sensitive (false);
+            var batch_window = new BatchWindow (this);
+            batch_window.close_request.connect (() => {
+                this.window.set_inputs_sensitive (true);
+                return false;
+            });
+            batch_window.present ();
+        }
+
     }
 
     public class ExtractorWindow : Gtk.ApplicationWindow {
@@ -377,7 +398,7 @@ namespace PdfToCbr {
          * 
          * @since 0.0.1
          */
-        private void set_inputs_sensitive (bool sensitive) {
+        public void set_inputs_sensitive (bool sensitive) {
             input_entry.sensitive = sensitive;
             output_entry.sensitive = sensitive;
             extract_button.sensitive = sensitive;
