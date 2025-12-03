@@ -33,7 +33,6 @@ namespace PdfToCbr {
         private const string APP_LANG_DOMAIN = Constants.GETTEXT_PACKAGE;
         private const string APP_INSTALL_PREFIX = Constants.PREFIX;
             
-        private Gtk.HeaderBar headerbar;
         private ExtractorWindow window;
 
         public PdfToCbr () {
@@ -49,88 +48,17 @@ namespace PdfToCbr {
 
         protected override void activate () {
             window = new ExtractorWindow (this);
-            this.init_headerbar ();
             window.present ();
-        }
-
-        /**
-         * init_headerbar:
-         *
-         * #Gtk.HeaderBar constructor for the Application
-         *
-         * @since 0.0.1
-         */
-        private void init_headerbar () {
-            headerbar = new Gtk.HeaderBar ();
-            headerbar.set_title_widget (new Gtk.Label (APP_NAME));
-            headerbar.set_hexpand (true);
-
-            //Gtk.Image logo = new Gtk.Image.from_icon_name (APP_NAME);
-            //headerbar.pack_start (logo);
-                
-            Gtk.Button btn_about = new Gtk.Button.from_icon_name ("help-about-symbolic");
-            btn_about.clicked.connect (on_about_action);
-            btn_about.set_tooltip_text (_("About"));
-            headerbar.pack_start (btn_about);
-                
-            Gtk.Button btn_batchmode = new Gtk.Button.from_icon_name ("view-list-symbolic");
-            btn_batchmode.set_tooltip_text (_("Batch mode"));
-            btn_batchmode.clicked.connect (on_batchmode_action);
-            headerbar.pack_start (btn_batchmode);
-
-            window.set_titlebar (headerbar);
-        }
-
-        /**
-         * about_dialog:
-         *
-         * Create and display a #Gtk.AboutDialog window.
-         */
-        private void on_about_action () {
-            // Configure the dialog:
-            Gtk.AboutDialog dialog = new Gtk.AboutDialog ();
-            dialog.set_destroy_with_parent (true);
-            dialog.set_transient_for (this.active_window);
-            dialog.set_modal (true);
-
-            dialog.set_logo_icon_name ("pdftocbr");
-
-            dialog.authors = {"Nicola \"tudo75\" Tudino"};
-            //dialog.artists = {"Nicola \"tudo75\" Tudino"};
-            dialog.documenters = {"Nicola \"tudo75\" Tudino"};
-            //dialog.translator_credits = ("Nicola \"tudo75\" Tudino");
-
-            dialog.program_name = APP_NAME;
-            dialog.comments = _("Utility to convert PDF in CBR or CBZ");
-            dialog.copyright = _("Copyright 2025 Nicola \"tudo75\" Tudino");
-            dialog.version = VERSION;
-
-            dialog.set_license_type (Gtk.License.GPL_3_0_ONLY);
-
-            dialog.website = "http://github.com/tudo75/PdfToCbr";
-            dialog.website_label = "Repository Github";
-
-            // Show the dialog:
-            dialog.present ();
-        }
-
-        /**
-         * Batch mode window:
-         *
-         * Create and display a #Gtk.Window to handle the batch mode conversion.
-         */
-        private void on_batchmode_action () {
-            this.window.set_inputs_sensitive (false);
-            var batch_window = new BatchWindow (this);
-            batch_window.close_request.connect (() => {
-                this.window.set_inputs_sensitive (true);
-                return false;
-            });
-            batch_window.present ();
         }
     }
 
     public class ExtractorWindow : Gtk.ApplicationWindow {
+        public const string APP_NAME = Constants.PROJECT_NAME;
+        private const string VERSION = Constants.VERSION;
+        private const string APP_ID = Constants.APP_ID;
+        private const string APP_LANG_DOMAIN = Constants.GETTEXT_PACKAGE;
+        private const string APP_INSTALL_PREFIX = Constants.PREFIX;
+
         private Entry input_entry;
         private Entry output_entry;
         private DropDown format_dropdown;
@@ -138,9 +66,12 @@ namespace PdfToCbr {
         private ProgressBar progress_bar;
         private Button extract_button;
         private Button output_browse_button;
+        private Gtk.Button btn_about;
+        private Gtk.Button btn_batchmode;
         private PdfImageExtractor extractor;
         private TextView log_view;
         private TextBuffer log_buffer;
+        private Gtk.HeaderBar headerbar;
         private const int APP_WIDTH = 400; //default 500
         private const int APP_HEIGHT = 450; //default 450
 
@@ -151,6 +82,8 @@ namespace PdfToCbr {
             Gtk.CssProvider css_provider = new Gtk.CssProvider();
             css_provider.load_from_string (Constants.CSS);
             Gtk.StyleContext.add_provider_for_display (Gdk.Display.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
+
+            this.init_headerbar ();
 
             Box content_box = new Box (Orientation.VERTICAL, 15);
             content_box.margin_top = 20;
@@ -250,6 +183,87 @@ namespace PdfToCbr {
             extractor.finished.connect(on_extraction_finished);
             extractor.error.connect(on_extraction_error);
             extractor.warning.connect(on_extraction_warning);
+        }
+
+        /**
+         * init_headerbar:
+         *
+         * #Gtk.HeaderBar constructor for the Application
+         *
+         * @since 0.0.1
+         */
+        private void init_headerbar () {
+            headerbar = new Gtk.HeaderBar ();
+            headerbar.set_title_widget (new Gtk.Label (APP_NAME));
+            headerbar.set_hexpand (true);
+
+            //Gtk.Image logo = new Gtk.Image.from_icon_name (APP_NAME);
+            //headerbar.pack_start (logo);
+                
+            btn_about = new Gtk.Button.from_icon_name ("help-about-symbolic");
+            btn_about.clicked.connect (on_about_action);
+            btn_about.set_tooltip_text (_("About"));
+            headerbar.pack_start (btn_about);
+                
+            btn_batchmode = new Gtk.Button.from_icon_name ("view-list-symbolic");
+            btn_batchmode.set_tooltip_text (_("Batch mode"));
+            btn_batchmode.clicked.connect (on_batchmode_action);
+            headerbar.pack_start (btn_batchmode);
+
+            this.set_titlebar (headerbar);
+        }
+
+        /**
+         * about_dialog:
+         *
+         * Create and display a #Gtk.AboutDialog window.
+         */
+        private void on_about_action () {
+            this.set_inputs_sensitive (false);
+            // Configure the dialog:
+            Gtk.AboutDialog dialog = new Gtk.AboutDialog ();
+            dialog.set_destroy_with_parent (true);
+            dialog.set_transient_for (this.application.active_window);
+            dialog.set_modal (true);
+
+            dialog.set_logo_icon_name ("pdftocbr");
+
+            dialog.authors = {"Nicola \"tudo75\" Tudino"};
+            //dialog.artists = {"Nicola \"tudo75\" Tudino"};
+            dialog.documenters = {"Nicola \"tudo75\" Tudino"};
+            //dialog.translator_credits = ("Nicola \"tudo75\" Tudino");
+
+            dialog.program_name = APP_NAME;
+            dialog.comments = _("Utility to convert PDF in CBR or CBZ");
+            dialog.copyright = _("Copyright 2025 Nicola \"tudo75\" Tudino");
+            dialog.version = VERSION;
+
+            dialog.set_license_type (Gtk.License.GPL_3_0_ONLY);
+
+            dialog.website = "http://github.com/tudo75/PdfToCbr";
+            dialog.website_label = "Repository Github";
+
+            dialog.close_request.connect (() => {
+                this.set_inputs_sensitive (true);
+                return false;
+            });
+            // Show the dialog:
+            dialog.present ();
+        }
+
+        /**
+         * Batch mode window:
+         *
+         * Create and display a #Gtk.Window to handle the batch mode conversion.
+         */
+        private void on_batchmode_action () {
+            this.set_inputs_sensitive (false);
+            var batch_window = new BatchWindow (this.application);
+            batch_window.close_request.connect (() => {
+                this.set_inputs_sensitive (true);
+                return false;
+            });
+            batch_window.present ();
         }
 
         private async void on_browse_input () {
@@ -404,6 +418,8 @@ namespace PdfToCbr {
             extract_button.sensitive = sensitive;
             format_dropdown.sensitive = sensitive;
             mode_dropdown.sensitive = sensitive;
+            btn_about.sensitive = sensitive;
+            btn_batchmode.sensitive = sensitive;
         }
 
         /**
