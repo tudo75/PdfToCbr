@@ -78,13 +78,12 @@ public class BatchWindow : Gtk.ApplicationWindow {
 
         // --- Drag and Drop Area ---
         var drop_frame = new Gtk.Frame (null);
-        var drop_label = new Gtk.Label (_("Drag & Drop PDF Files Here"));
-        drop_label.set_margin_top (50);
-        drop_label.set_margin_bottom (50);
-        drop_label.set_margin_start (30);
-        drop_label.set_margin_end (30);
-        //drop_frame.set_child (drop_label);
-        var drop_icon =new Gtk.Image.from_icon_name ("");
+        drop_frame.set_tooltip_text (_("Drag & Drop PDF Files Here"));
+        var drop_icon =new Gtk.Image.from_icon_name ("document-send-symbolic");
+        drop_icon.set_pixel_size (64);
+        drop_icon.set_margin_top (30);
+        drop_icon.set_margin_bottom (30);
+        drop_frame.set_child (drop_icon);
         main_box.append (drop_frame);
 
         // --- File List View ---
