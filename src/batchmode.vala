@@ -1,21 +1,19 @@
-/*
- * Copyright (c) 2024.
+/* batchmode.vala
  *
- * This file is part of PdfToCbr.
+ * Copyright 2025 Nicola tudo75 Tudino
  *
- * PdfToCbr is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * PdfToCbr is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with PdfToCbr. If not, see <https://www.gnu.org/licenses/>.
- *
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /**
@@ -35,6 +33,8 @@ public class PdfFileItem : GLib.Object {
 
 /**
  * The main window for batch conversion mode.
+ * 
+ * @since 0.0.3
  */
 public class BatchWindow : Gtk.ApplicationWindow {
 
@@ -77,15 +77,14 @@ public class BatchWindow : Gtk.ApplicationWindow {
         set_child (main_box);
 
         // --- Drag and Drop Area ---
-        var drop_frame = new Gtk.Frame ("");
-        //drop_frame.set_label_align (0.5f);
+        var drop_frame = new Gtk.Frame (null);
         var drop_label = new Gtk.Label (_("Drag & Drop PDF Files Here"));
-        //drop_label.height_request = 30;
-        drop_label.set_margin_top (30);
+        drop_label.set_margin_top (50);
         drop_label.set_margin_bottom (50);
         drop_label.set_margin_start (30);
         drop_label.set_margin_end (30);
-        drop_frame.set_child (drop_label);
+        //drop_frame.set_child (drop_label);
+        var drop_icon =new Gtk.Image.from_icon_name ("");
         main_box.append (drop_frame);
 
         // --- File List View ---
@@ -100,7 +99,9 @@ public class BatchWindow : Gtk.ApplicationWindow {
         scrolled_window.set_child (column_view);
         scrolled_window.set_policy (Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC);
         scrolled_window.set_vexpand (true);
-        main_box.append (scrolled_window);
+        var scrolled_window_frame = new Gtk.Frame (null);
+        scrolled_window_frame.set_child (scrolled_window);
+        main_box.append (scrolled_window_frame);
 
         // --- Controls ---
         var controls_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
@@ -139,6 +140,8 @@ public class BatchWindow : Gtk.ApplicationWindow {
      * init_headerbar:
      *
      * #Gtk.HeaderBar constructor for the Application
+     *
+     * @since 0.0.3
      */
     private void init_headerbar () {
         headerbar = new Gtk.HeaderBar ();
@@ -147,6 +150,13 @@ public class BatchWindow : Gtk.ApplicationWindow {
         this.set_titlebar (headerbar);
     }
 
+    /**
+     * setup_columns:
+     *
+     * Setup of the columns of the GLib.ListStore table view.
+     *
+     * @since 0.0.3
+     */
     private void setup_columns () {
         // --- Converted Checkbox Column ---
         var converted_factory = new Gtk.SignalListItemFactory ();
@@ -185,6 +195,14 @@ public class BatchWindow : Gtk.ApplicationWindow {
         column_view.append_column (filename_column);
     }
 
+    /**
+     * on_drop:
+     *
+     * Handle the drag and drop event to add Pdf files to the list.
+     * Check also if a file is already in the list.
+     *
+     * @since 0.0.3
+     */
     private bool on_drop (Gtk.DropTarget target, GLib.Value value, double x, double y) {
         var file_list = (Gdk.FileList) value;
         var files = file_list.get_files ();
@@ -199,6 +217,13 @@ public class BatchWindow : Gtk.ApplicationWindow {
         return true;
     }
 
+    /**
+     * store_contains_id:
+     *
+     * Function to check if a PdfFileItem is already in the GLib.ListStore.
+     *
+     * @since 0.0.3
+     */
     public bool store_contains_id(GLib.ListStore store, GLib.File file) {
         // Iterate over the ListStore
         for (uint i = 0; i < store.get_n_items(); i++) {
@@ -213,6 +238,14 @@ public class BatchWindow : Gtk.ApplicationWindow {
         return false; // Not Found
     }
 
+    /**
+     * on_convert_clicked:
+     *
+     * Function that handle the conversion process.
+     * To avoid blocking the interface is demanded to a new Thread.
+     *
+     * @since 0.0.3
+     */
     private void on_convert_clicked () {
         new Thread<void> ("extractor_worker", () => {
             convert_button.set_label(_("Converting..."));

@@ -57,6 +57,8 @@ namespace PdfToCbr {
          * init_headerbar:
          *
          * #Gtk.HeaderBar constructor for the Application
+         *
+         * @since 0.0.1
          */
         private void init_headerbar () {
             headerbar = new Gtk.HeaderBar ();
@@ -68,10 +70,11 @@ namespace PdfToCbr {
                 
             Gtk.Button btn_about = new Gtk.Button.from_icon_name ("help-about-symbolic");
             btn_about.clicked.connect (on_about_action);
+            btn_about.set_tooltip_text (_("About"));
             headerbar.pack_start (btn_about);
                 
             Gtk.Button btn_batchmode = new Gtk.Button.from_icon_name ("view-list-symbolic");
-            //btn_batchmode.set_label (_("Batch mode"));
+            btn_batchmode.set_tooltip_text (_("Batch mode"));
             btn_batchmode.clicked.connect (on_batchmode_action);
             headerbar.pack_start (btn_batchmode);
 
@@ -189,10 +192,12 @@ namespace PdfToCbr {
             input_entry.placeholder_text = _("Choose a PDF...");
             input_entry.hexpand = true;
             input_entry.width_chars = 30;
+            input_entry.set_tooltip_text (_("Choose a PDF..."));
             grid.attach (input_entry, 1, 0, 1, 1);
             
             Button input_btn = new Button.from_icon_name ("document-open-symbolic");
             input_btn.clicked.connect (on_browse_input);
+            input_btn.set_tooltip_text (_("Choose a PDF..."));
             grid.attach (input_btn, 2, 0, 1, 1);
 
             // 2. Output Mode (Folder, CBZ, CBR)
@@ -200,22 +205,26 @@ namespace PdfToCbr {
             string[] modes = { _("Folder"), _("CBZ archive (.cbz)"), _("CBR archive (.cbr)") };
             mode_dropdown = new DropDown.from_strings (modes);
             mode_dropdown.notify["selected"].connect (on_mode_changed);
+            mode_dropdown.set_tooltip_text (_("Output mode:"));
             grid.attach (mode_dropdown, 1, 1, 2, 1);
 
             // 3. Output Path
             grid.attach (new Label (_("Destination:")), 0, 2, 1, 1);
             output_entry = new Entry ();
             output_entry.placeholder_text = _("Choose destination...");
+            output_entry.set_tooltip_text (_("Choose destination..."));
             grid.attach (output_entry, 1, 2, 1, 1);
 
             output_browse_button = new Button.from_icon_name ("document-open-symbolic");
             output_browse_button.clicked.connect (on_browse_output);
+            output_browse_button.tooltip_text = _("Choose destination...");
             grid.attach (output_browse_button, 2, 2, 1, 1);
 
             // 4. Formato Immagine
             grid.attach (new Label (_("Format:")), 0, 3, 1, 1);
             string[] formats = { "PNG", "JPG" };
             format_dropdown = new DropDown.from_strings (formats);
+            format_dropdown.tooltip_text = _("Format:");
             grid.attach (format_dropdown, 1, 3, 2, 1);
 
             // Progress Bar
@@ -232,17 +241,20 @@ namespace PdfToCbr {
             content_box.append (extract_button);
 
             // Area per i messaggi di log
+            var log_frame = new Gtk.Frame (null);
+            log_frame.set_size_request (-1, 100);
             ScrolledWindow scrolled_window = new ScrolledWindow ();
             scrolled_window.set_policy (PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
             scrolled_window.set_size_request (-1, 100);
-            scrolled_window.set_has_frame (true);
+            scrolled_window.set_has_frame (false);
             scrolled_window.vexpand = true;
             log_view = new TextView ();
             log_view.editable = false;
             log_view.cursor_visible = false;
             log_buffer = log_view.buffer;
             scrolled_window.set_child (log_view);
-            content_box.append (scrolled_window);
+            log_frame.set_child (scrolled_window);
+            content_box.append (log_frame);
 
             // Istanzia l'estrattore e collega i segnali
             extractor = new PdfImageExtractor();
