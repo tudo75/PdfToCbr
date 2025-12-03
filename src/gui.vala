@@ -128,7 +128,6 @@ namespace PdfToCbr {
             });
             batch_window.present ();
         }
-
     }
 
     public class ExtractorWindow : Gtk.ApplicationWindow {
@@ -150,18 +149,7 @@ namespace PdfToCbr {
             this.set_default_size (APP_WIDTH, APP_HEIGHT);
 
             Gtk.CssProvider css_provider = new Gtk.CssProvider();
-            string csses = """
-                .progressbar-text-size {
-                    font-size: 1.2em;
-                }
-                .red {
-                    color: #FF5555; 
-                }
-                .green {
-                    color: #55FF55; 
-                }
-            """;
-            css_provider.load_from_string (csses);
+            css_provider.load_from_string (Constants.CSS);
             Gtk.StyleContext.add_provider_for_display (Gdk.Display.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
 
             Box content_box = new Box (Orientation.VERTICAL, 15);

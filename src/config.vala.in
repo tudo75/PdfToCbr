@@ -22,4 +22,15 @@ namespace Constants {
 	public const string GETTEXT_PACKAGE = "@GETTEXT_PACKAGE@";
 	public const string VERSION = "@VERSION@";
 	public const string PREFIX = "@PREFIX@";
+	public const string CSS = """
+            .progressbar-text-size {
+                font-size: 1.2em;
+            }
+            .red {
+                color: #FF5555; 
+            }
+            .green {
+                color: #55FF55; 
+            }
+        """;
 }
