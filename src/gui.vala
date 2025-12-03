@@ -208,7 +208,7 @@ namespace PdfToCbr {
             output_browse_button.tooltip_text = _("Choose destination...");
             grid.attach (output_browse_button, 2, 2, 1, 1);
 
-            // 4. Formato Immagine
+            // 4. Image format
             grid.attach (new Label (_("Format:")), 0, 3, 1, 1);
             string[] formats = { "PNG", "JPG" };
             format_dropdown = new DropDown.from_strings (formats);
@@ -222,13 +222,13 @@ namespace PdfToCbr {
             progress_bar.text = _("Ready");
             content_box.append (progress_bar);
 
-            // Bottone Estrai
+            // Extraction button
             extract_button = new Button.with_label (_("Extract images"));
             extract_button.add_css_class ("suggested-action");
             extract_button.clicked.connect (on_extract_clicked);
             content_box.append (extract_button);
 
-            // Area per i messaggi di log
+            // Log messages display area
             var log_frame = new Gtk.Frame (null);
             log_frame.set_size_request (-1, 100);
             ScrolledWindow scrolled_window = new ScrolledWindow ();
@@ -244,7 +244,7 @@ namespace PdfToCbr {
             log_frame.set_child (scrolled_window);
             content_box.append (log_frame);
 
-            // Istanzia l'estrattore e collega i segnali
+            // Initialize the extractorand add signals handlers
             extractor = new PdfImageExtractor();
             extractor.progress.connect(on_extraction_progress);
             extractor.finished.connect(on_extraction_finished);
@@ -267,7 +267,7 @@ namespace PdfToCbr {
                 GLib.File file = yield dialog.open(this, null);
                 input_entry.text = file.get_path();
             } catch (Error e) {
-                // Aborted by user
+                log_message (_("Aborted by user")); // Aborted by user
             }
         }
 
@@ -300,7 +300,7 @@ namespace PdfToCbr {
                     output_entry.text = folder.get_path();
                 }
             } catch (Error e) {
-                // Aborted by user
+                log_message (_("Aborted by user")); // Aborted by user
             }
         }
 
@@ -309,7 +309,7 @@ namespace PdfToCbr {
             string output_path = output_entry.text;
             
             if (input_path == "" || output_path == "") {
-                log_message("<span foreground=\"#FF5555\">%s</span>".printf (_("Error: Input file and destination must be selected")));
+                log_message ("<span foreground=\"#FF5555\">%s</span>".printf (_("Error: Input file and destination must be selected")));
                 return; // No need for yield anymore
             }
 
@@ -319,7 +319,7 @@ namespace PdfToCbr {
             set_inputs_sensitive (false);
             progress_bar.text = _("Extraction in progress...");
             progress_bar.fraction = 0.0;
-            log_message(_("Start extraction..."));
+            log_message (_("Start extraction..."));
 
             // Execute heavy operations in a separate thread
             new Thread<void> ("extractor_worker", () => {
@@ -357,7 +357,7 @@ namespace PdfToCbr {
             progress_bar.add_css_class("green");
             progress_bar.text = _("Finished!");
             progress_bar.remove_css_class("green");
-            log_message("<span foreground=\"#55FF55\">%s</span>".printf(_("Success: Completed extraction of %d images!").printf(total_images)));
+            log_message ("<span foreground=\"#55FF55\">%s</span>".printf(_("Success: Completed extraction of %d images!").printf(total_images)));
         }
 
 
@@ -374,7 +374,7 @@ namespace PdfToCbr {
             progress_bar.text = _("Error");
             progress_bar.remove_css_class("red");
             string error_msg = "<span foreground=\"#FF5555\">%s: %s</span>".printf(_("Error"), message);
-            log_message(error_msg);
+            log_message (error_msg);
             error(message); // Log to console as well for debugging
         }
 
@@ -387,7 +387,7 @@ namespace PdfToCbr {
          */
         private void on_extraction_warning(string message) {
             string warning_msg = "<span foreground=\"#ffff00\">%s: %s</span>".printf(_("Warning"), message);
-            log_message(warning_msg);
+            log_message (warning_msg);
             warning("%s".printf(message)); // Log to console as well for debugging
         }
 
