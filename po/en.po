@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PdfToCbr\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-04 09:23+0100\n"
+"POT-Creation-Date: 2025-12-04 13:59+0100\n"
 "PO-Revision-Date: 2025-11-30 16:36+0100\n"
 "Last-Translator: Nicola Tudino <tudo75@hotmail.com>\n"
 "Language-Team: \n"
@@ -12,87 +12,87 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.8\n"
 
-#: src/main_cli.vala:59
+#: src/main_cli.vala:60
 msgid "Extract all images from a PDF file."
 msgstr ""
 
-#: src/main_cli.vala:64
+#: src/main_cli.vala:65
 #, c-format
 msgid "Error during options parsing: %s\n"
 msgstr ""
 
-#: src/main_cli.vala:65 src/main_cli.vala:71 src/main_cli.vala:77
+#: src/main_cli.vala:66 src/main_cli.vala:72 src/main_cli.vala:78
 #, c-format
 msgid "For more details ececute '%s --help'.\n"
 msgstr ""
 
-#: src/main_cli.vala:70
+#: src/main_cli.vala:71
 msgid "Error: --output option is mandatory.\n"
 msgstr ""
 
-#: src/main_cli.vala:76
+#: src/main_cli.vala:77
 msgid "Error: give a PDF input file.\n"
 msgstr ""
 
-#: src/main_cli.vala:86
+#: src/main_cli.vala:87
 #, c-format
 msgid "Error: not supported '%s' format.\n"
 msgstr ""
 
-#: src/main_cli.vala:91
+#: src/main_cli.vala:92
 #, c-format
 msgid "Error: '%s' file not found.\n"
 msgstr ""
 
-#: src/main_cli.vala:103
+#: src/main_cli.vala:104
 #, c-format
 msgid ""
 "\n"
 "Finished! %d images saved in '%s'.\n"
 msgstr ""
 
-#: src/main_cli.vala:107
+#: src/main_cli.vala:108
 #, c-format
 msgid ""
 "\n"
 "Error: %s\n"
 msgstr ""
 
-#: src/pdf_image_extractor.vala:120 src/extractorwindow.vala:322
+#: src/pdf_image_extractor.vala:121 src/extractorwindow.vala:323
 msgid "Start extraction..."
 msgstr ""
 
-#: src/pdf_image_extractor.vala:130
+#: src/pdf_image_extractor.vala:131
 #, c-format
 msgid "Page %d of %d..."
 msgstr ""
 
-#: src/pdf_image_extractor.vala:157
+#: src/pdf_image_extractor.vala:158
 #, c-format
 msgid "Impossible conversion of image at page %d."
 msgstr ""
 
-#: src/pdf_image_extractor.vala:208
+#: src/pdf_image_extractor.vala:209
 #, c-format
 msgid "Impossible to delete the temporary folder '%s': %s"
 msgstr ""
 
-#: src/pdf_image_extractor.vala:229
+#: src/pdf_image_extractor.vala:230
 #, c-format
 msgid "I/O error writing '%s' to memory: %s"
 msgstr ""
 
-#: src/pdf_image_extractor.vala:246 src/pdf_image_extractor.vala:278
+#: src/pdf_image_extractor.vala:247 src/pdf_image_extractor.vala:279
 #, c-format
 msgid "Error writing %s header"
 msgstr ""
 
-#: src/pdf_image_extractor.vala:252 src/pdf_image_extractor.vala:285
+#: src/pdf_image_extractor.vala:253 src/pdf_image_extractor.vala:286
 #, c-format
 msgid "Error adding '%s' to the archve %s"
 msgstr ""
 
-#: src/pdf_image_extractor.vala:306
+#: src/pdf_image_extractor.vala:307
 #, c-format
 msgid ""
 "Error executing the 'rar' command. Check that the rar package is installed "
@@ -100,157 +100,157 @@ msgid ""
 " Details: %s"
 msgstr ""
 
-#: src/batchmode.vala:51 src/batchmode.vala:136
+#: src/batchmode.vala:56 src/batchmode.vala:139
 msgid "PdfToCbr Batch Converter"
 msgstr ""
 
 #. --- Drag and Drop Area ---
-#: src/batchmode.vala:70
+#: src/batchmode.vala:75
 msgid "Drag & Drop PDF Files Here"
 msgstr ""
 
-#: src/batchmode.vala:98
+#: src/batchmode.vala:103
 msgid "Output Format:"
 msgstr ""
 
 #. Default to CBZ
-#: src/batchmode.vala:104
+#: src/batchmode.vala:109
 msgid "Clear List"
 msgstr ""
 
-#: src/batchmode.vala:115 src/batchmode.vala:255
+#: src/batchmode.vala:120 src/batchmode.vala:250
 msgid "Convert All"
 msgstr ""
 
-#: src/batchmode.vala:164
+#: src/batchmode.vala:165
 msgid "Done"
 msgstr ""
 
-#: src/batchmode.vala:181
+#: src/batchmode.vala:182
 msgid "PDF File"
 msgstr ""
 
-#: src/batchmode.vala:239
+#: src/batchmode.vala:234
 msgid "Converting..."
 msgstr ""
 
 #. 1. Input PDF
-#: src/extractorwindow.vala:80
+#: src/extractorwindow.vala:81
 msgid "File PDF:"
 msgstr ""
 
-#: src/extractorwindow.vala:82 src/extractorwindow.vala:85
-#: src/extractorwindow.vala:90
+#: src/extractorwindow.vala:83 src/extractorwindow.vala:86
+#: src/extractorwindow.vala:91
 msgid "Choose a PDF..."
 msgstr ""
 
 #. 2. Output Mode (Folder, CBZ, CBR)
-#: src/extractorwindow.vala:94 src/extractorwindow.vala:98
+#: src/extractorwindow.vala:95 src/extractorwindow.vala:99
 msgid "Output mode:"
 msgstr ""
 
-#: src/extractorwindow.vala:95
+#: src/extractorwindow.vala:96
 msgid "Folder"
 msgstr ""
 
-#: src/extractorwindow.vala:95
+#: src/extractorwindow.vala:96
 msgid "CBZ archive (.cbz)"
 msgstr ""
 
-#: src/extractorwindow.vala:95
+#: src/extractorwindow.vala:96
 msgid "CBR archive (.cbr)"
 msgstr ""
 
 #. 3. Output Path
-#: src/extractorwindow.vala:102
+#: src/extractorwindow.vala:103
 msgid "Destination:"
 msgstr ""
 
-#: src/extractorwindow.vala:104 src/extractorwindow.vala:105
-#: src/extractorwindow.vala:110
+#: src/extractorwindow.vala:105 src/extractorwindow.vala:106
+#: src/extractorwindow.vala:111
 msgid "Choose destination..."
 msgstr ""
 
 #. 4. Image format
-#: src/extractorwindow.vala:114 src/extractorwindow.vala:117
+#: src/extractorwindow.vala:115 src/extractorwindow.vala:118
 msgid "Format:"
 msgstr ""
 
-#: src/extractorwindow.vala:124
+#: src/extractorwindow.vala:125
 msgid "Ready"
 msgstr ""
 
 #. Extraction button
-#: src/extractorwindow.vala:128
+#: src/extractorwindow.vala:129
 msgid "Extract images"
 msgstr ""
 
-#: src/extractorwindow.vala:172
+#: src/extractorwindow.vala:173
 msgid "About"
 msgstr ""
 
-#: src/extractorwindow.vala:176
+#: src/extractorwindow.vala:177
 msgid "Batch mode"
 msgstr ""
 
-#: src/extractorwindow.vala:204
+#: src/extractorwindow.vala:205
 msgid "Utility to convert PDF in CBR or CBZ"
 msgstr ""
 
-#: src/extractorwindow.vala:205
+#: src/extractorwindow.vala:206
 msgid "Copyright 2025 Nicola \"tudo75\" Tudino"
 msgstr ""
 
-#: src/extractorwindow.vala:243
+#: src/extractorwindow.vala:244
 msgid "Select PDF"
 msgstr ""
 
-#: src/extractorwindow.vala:246
+#: src/extractorwindow.vala:247
 msgid "PDF documents"
 msgstr ""
 
-#: src/extractorwindow.vala:256 src/extractorwindow.vala:298
+#: src/extractorwindow.vala:257 src/extractorwindow.vala:299
 msgid "Aborted by user"
 msgstr ""
 
-#: src/extractorwindow.vala:278
+#: src/extractorwindow.vala:279
 msgid "Select folder"
 msgstr ""
 
-#: src/extractorwindow.vala:278
+#: src/extractorwindow.vala:279
 msgid "Select archive"
 msgstr ""
 
-#: src/extractorwindow.vala:284
+#: src/extractorwindow.vala:285
 msgid "images.cbz"
 msgstr ""
 
-#: src/extractorwindow.vala:286
+#: src/extractorwindow.vala:287
 msgid "images.cbr"
 msgstr ""
 
-#: src/extractorwindow.vala:312
+#: src/extractorwindow.vala:313
 msgid "Error: Input file and destination must be selected"
 msgstr ""
 
 #. UI Update: Disable controls and start progress animation
-#: src/extractorwindow.vala:320
+#: src/extractorwindow.vala:321
 msgid "Extraction in progress..."
 msgstr ""
 
-#: src/extractorwindow.vala:357
+#: src/extractorwindow.vala:358
 msgid "Finished!"
 msgstr ""
 
-#: src/extractorwindow.vala:359
+#: src/extractorwindow.vala:360
 #, c-format
 msgid "Success: Completed extraction of %d images!"
 msgstr ""
 
-#: src/extractorwindow.vala:372 src/extractorwindow.vala:374
+#: src/extractorwindow.vala:373 src/extractorwindow.vala:375
 msgid "Error"
 msgstr ""
 
-#: src/extractorwindow.vala:386
+#: src/extractorwindow.vala:387
 msgid "Warning"
 msgstr ""
