@@ -1,5 +1,5 @@
 /**
- * @file batchmode.vala
+ * batchmode.vala
  *
  * Copyright 2025 Nicola tudo75 Tudino
  *

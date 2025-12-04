@@ -1,5 +1,5 @@
 /**
- * @file main_cli.vala
+ * main_cli.vala
  *
  * Copyright 2025 Nicola tudo75 Tudino
  *

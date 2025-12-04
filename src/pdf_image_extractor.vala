@@ -1,5 +1,5 @@
 /**
- * @file pdf_image_extractor.vala
+ * pdf_image_extractor.vala
  *
  * Copyright 2025 Nicola tudo75 Tudino
  *
