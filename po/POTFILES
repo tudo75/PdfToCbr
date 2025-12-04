@@ -2,3 +2,4 @@ src/gui.vala
 src/main_cli.vala
 src/pdf_image_extractor.vala
 src/batchmode.vala
+src/extractorwindow.vala

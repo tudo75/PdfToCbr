@@ -1,4 +1,5 @@
-/* pdf_image_extractor.vala
+/**
+ * @file pdf_image_extractor.vala
  *
  * Copyright 2025 Nicola tudo75 Tudino
  *
@@ -24,46 +25,46 @@ using Gdk; // In GTK4 it refers to gdk-pixbuf-2.0 for Pixbuf class
 
 namespace PdfToCbr {
     /**
-    * Logic class to extract images from a PDF file.
-    * Images extracted can be svaed in a folder or as CBZ/CBR file
-    * Emit signals to notify progress, completion or errors,
-    * make it usable by GUI or CLI apps.
-    */
+     * Logic class to extract images from a PDF file.
+     * Images extracted can be svaed in a folder or as CBZ/CBR file
+     * Emit signals to notify progress, completion or errors,
+     * make it usable by GUI or CLI apps.
+     */
     public class PdfImageExtractor : Object {
 
         /**
-        * Signal emitted during extraction to notify the progress.
-        * @param current_page Current working page.
-        * @param total_pages Total pages number in the PDF file.
-        * @param message Description message to be displayed.
-        * 
-        * @since 0.0.1
-        */
+         * Signal emitted during extraction to notify the progress.
+         * @param current_page Current working page.
+         * @param total_pages Total pages number in the PDF file.
+         * @param message Description message to be displayed.
+         * 
+         * @since 0.0.1
+         */
         public signal void progress(int current_page, int total_pages, string message);
 
         /**
-        * Signal emitted on successfully completion of extraction.
-        * @param total_images Total number of extracted images.
-        * @param output_path Utput path of the file or of the extraction folder.
-        * 
-        * @since 0.0.1
-        */
+         * Signal emitted on successfully completion of extraction.
+         * @param total_images Total number of extracted images.
+         * @param output_path Utput path of the file or of the extraction folder.
+         * 
+         * @since 0.0.1
+         */
         public signal void finished(int total_images, string output_path);
 
         /**
-        * Signal emitted in case of error during extraction.
-        * @param message Error message.
-        * 
-        * @since 0.0.1
-        */
+         * Signal emitted in case of error during extraction.
+         * @param message Error message.
+         * 
+         * @since 0.0.1
+         */
         public signal void error(string message);
 
         /**
-        * Signal emitted in case of warning during extraction.
-        * @param message Warning message.
-        * 
-        * @since 0.0.1
-        */
+         * Signal emitted in case of warning during extraction.
+         * @param message Warning message.
+         * 
+         * @since 0.0.1
+         */
         public signal void warning(string message);
 
         public PdfImageExtractor() {
@@ -71,14 +72,14 @@ namespace PdfToCbr {
         }
 
         /**
-        * Function to extract images from a PDF file.
-        * Images extracted can be svaed in a folder or as CBZ/CBR file
-        * @param input_path The path of the PDF file to be extracted.
-        * @param output_path The path of the CBZ/CBR file or folder where images must be saved.
-        * @param format Iamge format of the extracted images.
-        * 
-        * @since 0.0.1
-        */
+         * Function to extract images from a PDF file.
+         * Images extracted can be svaed in a folder or as CBZ/CBR file
+         * @param input_path The path of the PDF file to be extracted.
+         * @param output_path The path of the CBZ/CBR file or folder where images must be saved.
+         * @param format Iamge format of the extracted images.
+         * 
+         * @since 0.0.1
+         */
         public void extract_images(string input_path, string output_path, string format) {
             try {
                 _do_extraction(input_path, output_path, format);
@@ -88,16 +89,16 @@ namespace PdfToCbr {
         }
 
         /**
-        * Function to extract images from a PDF file.
-        * Images extracted can be svaed in a folder or as CBZ/CBR file
-        * @param input_path The path of the PDF file to be extracted.
-        * @param final_output_path The path of the CBZ/CBR file or folder where images must be saved.
-        * @param format Iamge format of the extracted images.
-        * 
-        * @throws GLib.Error If there is an error while extracting images,an error will be thrown.
-        * 
-        * @since 0.0.1
-        */
+         * Function to extract images from a PDF file.
+         * Images extracted can be svaed in a folder or as CBZ/CBR file
+         * @param input_path The path of the PDF file to be extracted.
+         * @param final_output_path The path of the CBZ/CBR file or folder where images must be saved.
+         * @param format Iamge format of the extracted images.
+         * 
+         * @throws GLib.Error If there is an error while extracting images,an error will be thrown.
+         * 
+         * @since 0.0.1
+         */
         private void _do_extraction(string input_path, string final_output_path, string format) throws GLib.Error {
             bool use_zip = final_output_path.has_suffix(".cbz");
             bool use_rar = final_output_path.has_suffix(".cbr");
@@ -178,11 +179,11 @@ namespace PdfToCbr {
         }
 
         /**
-        * Recursive deletion function for temporary folder and files.
-        * @param folderpath The path of the temporary folder.
-        * 
-        * @since 0.0.1
-        */
+         * Recursive deletion function for temporary folder and files.
+         * @param folderpath The path of the temporary folder.
+         * 
+         * @since 0.0.1
+         */
         private void remove_files_and_folders(string folderpath) {
             try {
                 var dir = File.new_for_path(folderpath);
@@ -210,13 +211,13 @@ namespace PdfToCbr {
         }
 
         /**
-        * Add a Cairo.Surface (as PNG) to a libarchive output file.
-        * @param writer The achive file writer.
-        * @param surface The Cairo.Surface to be saved as PNG.
-        * @param entry_name The PNG file name.
-        * 
-        * @since 0.0.1
-        */
+         * Add a Cairo.Surface (as PNG) to a libarchive output file.
+         * @param writer The achive file writer.
+         * @param surface The Cairo.Surface to be saved as PNG.
+         * @param entry_name The PNG file name.
+         * 
+         * @since 0.0.1
+         */
         private void add_surface_to_archive(Archive.Write? writer, Cairo.Surface surface, string entry_name) {
             try {
                 // Use memory stream to obtain PNG data
@@ -254,13 +255,13 @@ namespace PdfToCbr {
         }
 
         /**
-        * Add a Gdk.Pixbuf (as JPG) to a libarchive output file.
-        * @param writer The achive file writer.
-        * @param pixbuf The Gdk.Pixbuf to be saved as JPG.
-        * @param entry_name The JPG file name.
-        * 
-        * @since 0.0.1
-        */
+         * Add a Gdk.Pixbuf (as JPG) to a libarchive output file.
+         * @param writer The achive file writer.
+         * @param pixbuf The Gdk.Pixbuf to be saved as JPG.
+         * @param entry_name The JPG file name.
+         * 
+         * @since 0.0.1
+         */
         private void add_pixbuf_to_archive(Archive.Write? writer, Gdk.Pixbuf pixbuf, string entry_name) {
             try {
                 // Save pixbuf in a memory buffer as JPG
@@ -287,12 +288,12 @@ namespace PdfToCbr {
         }
 
         /**
-        * Create a CBR archive using the external 'rar' command.
-        * @param archive_path The path of the CBR file.
-        * @param source_dir The Path of the folder containing the extracted images to be added to the CBR archive.
-        * 
-        * @since 0.0.1
-        */
+         * Create a CBR archive using the external 'rar' command.
+         * @param archive_path The path of the CBR file.
+         * @param source_dir The Path of the folder containing the extracted images to be added to the CBR archive.
+         * 
+         * @since 0.0.1
+         */
         private void create_rar_archive(string archive_path, string source_dir) {
             try {
                 string[] argv = {"rar", "a", "-ep1", "-o+", archive_path, source_dir + "/*"};
@@ -308,12 +309,12 @@ namespace PdfToCbr {
         }
 
         /**
-        * Convert a Cairo.Surface to a Gdk.Pixbuf.
-        * Necessary because gdk_pixbuf_get_from_surface doesn't exist in GTK4.
-        * @param surface The Cairo.Surface to be converted.
-        * 
-        * @since 0.0.1
-        */
+         * Convert a Cairo.Surface to a Gdk.Pixbuf.
+         * Necessary because gdk_pixbuf_get_from_surface doesn't exist in GTK4.
+         * @param surface The Cairo.Surface to be converted.
+         * 
+         * @since 0.0.1
+         */
         private static Gdk.Pixbuf? surface_to_pixbuf(Cairo.Surface surface) {
             var img_surface = (Cairo.ImageSurface) surface;
             if (img_surface == null) return null;
