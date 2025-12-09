@@ -1,6 +1,14 @@
 # PdfToCbr
 PdfToCbr is a GUI to extract images from a PDF file and save them in a folder or as CBZ/CBR archives.
 
+<p align=center>
+  <img alt="PdfToCbr main screen" align="center" width="441" height="604" src="https://raw.githubusercontent.com/tudo75/PdfToCbr/refs/heads/BatchMode/images/img_2025-12-09_12-54-24.png">
+</p>
+
+<p align=center>
+  <img alt="PdfToCbr batch mode screen" align="center" width="602" height="482" src="https://raw.githubusercontent.com/tudo75/PdfToCbr/refs/heads/BatchMode/images/img_2025-12-09_12-54-40.png">
+</p>
+
 ## Requirements
 First of all the system must support threads.
 
